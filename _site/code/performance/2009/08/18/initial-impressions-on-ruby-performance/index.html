@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Initial Impressions on Ruby Performance &middot; Ben Christensen
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body class=" layout-reverse">
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+          Ben Christensen
+      </h1>
+      <p class="lead">Software Engineer at Netflix, previously Apple</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/about/">About</a>
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/toc/">Posts</a>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+      <a class="sidebar-nav-item" href="http://twitter.com/benjchristensen">Twitter</a>
+      <a class="sidebar-nav-item" href="http://github.com/benjchristensen">Github</a>
+      <a class="sidebar-nav-item" href="http://github.com/ReactiveX/RxJava">&bull; RxJava</a>
+      <a class="sidebar-nav-item" href="http://github.com/Netflix/Hystrix">&bull; Hystrix</a>
+      <a class="sidebar-nav-item" href="http://linkedin.com/in/benjchristensen">LinkedIn</a>
+    </nav>
+
+
+    <p>&copy; 2015. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Initial Impressions on Ruby Performance</h1>
+  <span class="post-date">18 Aug 2009</span>
+  <p>I&#39;ve spent the past day playing with Ruby and decided to test some basic performance - iterating and string parsing - to get an idea of what the performance is really like.</p>
+
+<p>Ruby is not doing so well in my tests.</p>
+
+<p><em>Note to Ruby Experts: If anyone can demonstrate what I&#39;m doing wrong in my code or testing, I would love to be corrected.</em></p>
+
+<p>My approach was to write the exact same code in Java and Ruby that loads up a file, reads each lines, tokenizes it into words using whitespace as the delimiter and counts up the tokens.</p>
+
+<p>This avoids network or database IO and other external resources - except the filesystem which I don&#39;t consider a significant variable in the test.</p>
+
+<p>Further testing I&#39;m planning on doing will test Rails, multi-threading and other common things I do in my apps.</p>
+
+<p><a href="http://benjchristensen.files.wordpress.com/2009/08/picture-31.png"><img src="http://benjchristensen.files.wordpress.com/2009/08/picture-31.png" alt="Picture 3"></a></p>
+
+<p>On my laptop, a MacBook Pro 2.53Ghz Core 2 Duo with 4GB memory, the average times are:</p>
+
+<ul>
+<li><p>Ruby 1.8.6 app: 8022ms</p></li>
+<li><p>Java 5 app: 2986ms</p></li>
+<li><p>Java 6 app: 1443ms</p></li>
+</ul>
+
+<p><strong>Source Code</strong></p>
+
+<ul>
+<li><p><a href="http://benjchristensen.files.wordpress.com/2009/08/filereadparse-java.doc">FileReadParse.java</a></p></li>
+<li><p><a href="http://benjchristensen.files.wordpress.com/2009/08/file_read_parse-rb.doc">file<em>read</em>parse.rb</a></p></li>
+</ul>
+
+<p>After downloading, strip the .doc ending off of the files.</p>
+
+<p><strong>Program Output</strong></p>
+
+<p>macbook-pro:src benjc$ /System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home/bin/java FileReadParse</p>
+
+<p>Starting to read file...</p>
+
+<p>The number of tokens is: 7764115</p>
+
+<p>It took 1502 ms</p>
+
+<p>macbook-pro:performance benjc$ ruby file<em>read</em>parse.rb</p>
+
+<p>Starting to read file ...</p>
+
+<p>The number of tokens is: 7764115</p>
+
+<p>It took 7999.955 ms</p>
+
+<p>macbook-pro:src benjc$ /System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home/bin/java FileReadParse</p>
+
+<p>Starting to read file...</p>
+
+<p>The number of tokens is: 7764115</p>
+
+<p>It took 1502 ms</p>
+
+<p>macbook-pro:performance benjc$ ruby file<em>read</em>parse.rb</p>
+
+<p>Starting to read file ...</p>
+
+<p>The number of tokens is: 7764115</p>
+
+<p>It took 7999.955 ms</p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/architecture/code/infrastructure/performance/production/production%20problems/resilience%20engineering/tools/2013/06/10/application-resilience-in-a-service-oriented-architecture-using-hystrix/">
+            Application Resilience in a Service-Oriented Architecture using Hystrix
+            <small>10 Jun 2013</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/architecture/code/resilience%20engineering/tools/2013/05/24/hystrix-in-may-2013-thoughtworks-tech-radar/">
+            Hystrix in May 2013 ThoughtWorks Tech Radar
+            <small>24 May 2013</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/architecture/code/infrastructure/performance/production/resilience%20engineering/2013/05/01/functional-reactive-programming-in-the-netflix-api-qcon-london-2013/">
+            Functional Reactive Programming in the Netflix API - QCon London 2013
+            <small>01 May 2013</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>

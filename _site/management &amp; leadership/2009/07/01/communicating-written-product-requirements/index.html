@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Communicating Product Requirements &middot; Ben Christensen
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body class=" layout-reverse">
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+          Ben Christensen
+      </h1>
+      <p class="lead">Software Engineer at Netflix, previously Apple</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/about/">About</a>
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/toc/">Posts</a>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+      <a class="sidebar-nav-item" href="http://twitter.com/benjchristensen">Twitter</a>
+      <a class="sidebar-nav-item" href="http://github.com/benjchristensen">Github</a>
+      <a class="sidebar-nav-item" href="http://github.com/ReactiveX/RxJava">&bull; RxJava</a>
+      <a class="sidebar-nav-item" href="http://github.com/Netflix/Hystrix">&bull; Hystrix</a>
+      <a class="sidebar-nav-item" href="http://linkedin.com/in/benjchristensen">LinkedIn</a>
+    </nav>
+
+
+    <p>&copy; 2015. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Communicating Product Requirements</h1>
+  <span class="post-date">01 Jul 2009</span>
+  <p>I&#39;ve spent the last day considering product and/or project requirements - in particular how to document and communicate them.</p>
+
+<p>A draft of a requirements document numbering in excess of 100 pages has very thoroughly covered the technical definitions of all of the various &#39;features&#39; - what the system needs to contain. However, it reads like a dictionary definition and does not in any way help me understand the following:</p>
+
+<ul>
+<li><p>What is the business purpose of the product?</p></li>
+<li><p>What is the business purpose of a particular requirement?</p></li>
+<li><p>What are the use cases that requirement must serve?</p></li>
+<li><p>Who will use the specific requirement and for what?</p></li>
+<li><p>How does a given requirement fit into the overall system so I know its context?</p></li>
+<li><p>How will the product implement the feature that address the given requirement?</p></li>
+<li><p>Where in the system architecture should the developers implement the given feature?</p></li>
+</ul>
+
+<p>I became aware while reading that most of the people for whom this document exists would not have a much better understanding of what needs to be built after reading the document than from before.</p>
+
+<p>During my consideration I listened to a podcast on &quot;<a href="http://www.se-radio.net/podcast/2008-10/episode-114-christof-ebert-requirements-engineering">requirements engineering</a>&quot; that interviewed Christof Ebert.</p>
+
+<p>I think the recommendations and principles are valuable regardless of what process is followed -- whether they are done upfront or at the beginning of each iteration with waterfall, agile or a mixture of both.</p>
+
+<p>A few notes from the podcast:</p>
+
+<p><strong>What Requirements Should Define</strong></p>
+
+<ul>
+<li><p>What the Customer Needs Are</p></li>
+<li><p>What the Product Should Do</p></li>
+<li><p>How the Product Should Do It</p></li>
+</ul>
+
+<p><strong>Common Requirement Problems</strong></p>
+
+<ul>
+<li><p>Missing Requirements: Incorrect effort or tactics to seek out (elicit) all of the requirements.</p></li>
+<li><p>Wrong Requirements: Poor capture, communication or lack of validation with stakeholders.</p></li>
+<li><p>Changing Requirements: Requirements are never static, they always change.</p></li>
+</ul>
+
+<p><strong>3 Levels of Requirements That Need to be Addressed</strong></p>
+
+<p><em>Market (External)</em></p>
+
+<ul>
+<li><p>what user or client expects</p></li>
+<li><p>the &quot;problem space&quot;, defining the problem and what is desired to solve it</p></li>
+<li><p>what will make the product successful</p></li>
+</ul>
+
+<p><em>Product (Internal)</em></p>
+
+<ul>
+<li><p>what the product will do</p></li>
+<li><p>how the product will address the market requirements</p></li>
+<li><p>the &quot;solution space&quot;, defining the solution that will meet the user (market) requirements</p></li>
+<li><p>define what functionality and requirements will be made into a product</p></li>
+</ul>
+
+<p><em>Component (Software)</em></p>
+
+<ul>
+<li><p>lower level details of how to implement the requirements in software</p></li>
+<li><p>non-functional requirements such as quality, service levels, maintainability etc</p></li>
+<li><p>context of requirement in overall system</p></li>
+</ul>
+
+<p><strong>What is good enough?</strong></p>
+
+<p>Reality must be paid attention to. Generally the economics of a project can not justify the &quot;ivory tower&quot; of solutions for all aspects of a project.</p>
+
+<p>What is good enough to serve the user - in both functional and non-functional requirements?</p>
+
+<p><strong>What is of high priority?</strong></p>
+
+<p>Almost always there is more work to be done than resources, so what is of priority?</p>
+
+<p>What can and will be committed to for development, with what resources and by when?</p>
+
+<p>What can users live without, what must they have?</p>
+
+<p><strong>My Final Thoughts</strong></p>
+
+<p>As I prepare to attempt a revision of the requirements I&#39;m working on, I must remember the primary reason for the documents existence: to communicate to developers, QA, analysts and business the reason for the product, what value it&#39;s creating and what use cases it will provide functionality for.</p>
+
+<p>If it doesn&#39;t leave the reader with comprehension of what they&#39;ll end up with at the end of development - at least at a 10,000 foot level - and is just a list of features with no context or purpose, then it&#39;s a failure, no matter the length or level of detail.</p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/architecture/code/infrastructure/performance/production/production%20problems/resilience%20engineering/tools/2013/06/10/application-resilience-in-a-service-oriented-architecture-using-hystrix/">
+            Application Resilience in a Service-Oriented Architecture using Hystrix
+            <small>10 Jun 2013</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/architecture/code/resilience%20engineering/tools/2013/05/24/hystrix-in-may-2013-thoughtworks-tech-radar/">
+            Hystrix in May 2013 ThoughtWorks Tech Radar
+            <small>24 May 2013</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/architecture/code/infrastructure/performance/production/resilience%20engineering/2013/05/01/functional-reactive-programming-in-the-netflix-api-qcon-london-2013/">
+            Functional Reactive Programming in the Netflix API - QCon London 2013
+            <small>01 May 2013</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>

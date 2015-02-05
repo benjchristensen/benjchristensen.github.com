@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Lessons Learned &middot; Ben Christensen
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body class=" layout-reverse">
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+          Ben Christensen
+      </h1>
+      <p class="lead">Software Engineer at Netflix, previously Apple</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/about/">About</a>
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/toc/">Posts</a>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+      <a class="sidebar-nav-item" href="http://twitter.com/benjchristensen">Twitter</a>
+      <a class="sidebar-nav-item" href="http://github.com/benjchristensen">Github</a>
+      <a class="sidebar-nav-item" href="http://github.com/ReactiveX/RxJava">&bull; RxJava</a>
+      <a class="sidebar-nav-item" href="http://github.com/Netflix/Hystrix">&bull; Hystrix</a>
+      <a class="sidebar-nav-item" href="http://linkedin.com/in/benjchristensen">LinkedIn</a>
+    </nav>
+
+
+    <p>&copy; 2015. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Lessons Learned</h1>
+  <span class="post-date">13 Oct 2007</span>
+  <p>[1] Don&#39;t be accommodating to a client ... otherwise, when all hell breaks loose none of that will matter and any issues resulting from attempts to accommodate last minute changes, bad decisions and architecture/environmental issues will all be the fault of the development team -- instead of the client.</p>
+
+<p>[2] If one wants to be accommodating, then everything must be done so with disclaimers in writing to significantly high enough ranking people -- Director or VP -- managers don&#39;t cut it.</p>
+
+<p>[3] Dictate every single aspect of an environments requirements and thresholds, even if it&#39;s not directly related to the application and even (especially?!) if it&#39;s thought to be assumed.</p>
+
+<p>For example:</p>
+
+<ul>
+<li><p>firewall behavior</p></li>
+<li><p>load balancer logic</p></li>
+<li><p>request throttling</p></li>
+<li><p>JVM configuration</p></li>
+<li><p>appserver configuration</p></li>
+<li><p>relationship of application to other apps in environment</p></li>
+<li><p>how many applications are running within a JVM or on a box</p></li>
+<li><p>thread pools and configuration (throttling, min/max, growth)</p></li>
+<li><p>db pool config</p></li>
+<li><p>database server config (memory, available connections to all applications, not just the one being deployed)</p></li>
+<li><p>network latency and error thresholds</p></li>
+<li><p>environment capacity</p></li>
+<li><p>disclaimers on environmental issues which will affect application</p></li>
+</ul>
+
+<p>[4] Since virtually nobody has an actual replica of production, dictate that an environment must be made available that everyone agrees on as being the &#39;spec&#39; to which the app will be built and signed off on. The client must then accept that since their prod environment does not match that spec, any risk of issues going into prod are theirs -- such as bugs, crashes, delays, etc.</p>
+
+<p>[5] If a client does not have adequate testing tools or refuses to provide opportunities for load testing (internal tools, Gomez, Keynote etc) then an official disclaimer must be communicated to the client (see above).</p>
+
+<p>[6] Always get a baseline of a production environment before deployment:</p>
+
+<ul>
+<li><p>thread dumps</p></li>
+<li><p>application performance numbers</p></li>
+<li><p>network errors/latency/performance</p></li>
+<li><p>application logs</p></li>
+</ul>
+
+<p>[7] Do not assume that because code has worked in other environments that it will work in your clients.</p>
+
+<p>[8] The client doesn&#39;t care if it works anywhere else besides their prod environment -- even if it works in the dev environment they provided. See [4] above.</p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/architecture/code/infrastructure/performance/production/production%20problems/resilience%20engineering/tools/2013/06/10/application-resilience-in-a-service-oriented-architecture-using-hystrix/">
+            Application Resilience in a Service-Oriented Architecture using Hystrix
+            <small>10 Jun 2013</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/architecture/code/resilience%20engineering/tools/2013/05/24/hystrix-in-may-2013-thoughtworks-tech-radar/">
+            Hystrix in May 2013 ThoughtWorks Tech Radar
+            <small>24 May 2013</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/architecture/code/infrastructure/performance/production/resilience%20engineering/2013/05/01/functional-reactive-programming-in-the-netflix-api-qcon-london-2013/">
+            Functional Reactive Programming in the Netflix API - QCon London 2013
+            <small>01 May 2013</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>

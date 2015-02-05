@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Ben Christensen &middot; 
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body class=" layout-reverse">
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+          Ben Christensen
+      </h1>
+      <p class="lead">Software Engineer at Netflix, previously Apple</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/about/">About</a>
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/toc/">Posts</a>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+      <a class="sidebar-nav-item" href="http://twitter.com/benjchristensen">Twitter</a>
+      <a class="sidebar-nav-item" href="http://github.com/benjchristensen">Github</a>
+      <a class="sidebar-nav-item" href="http://github.com/ReactiveX/RxJava">&bull; RxJava</a>
+      <a class="sidebar-nav-item" href="http://github.com/Netflix/Hystrix">&bull; Hystrix</a>
+      <a class="sidebar-nav-item" href="http://linkedin.com/in/benjchristensen">LinkedIn</a>
+    </nav>
+
+
+    <p>&copy; 2015. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/tools/2006/02/02/subclipse-and-subversion/">
+        Subclipse and Subversion
+      </a>
+    </h1>
+
+    <span class="post-date">02 Feb 2006</span>
+
+    <p>Subclipse is a pretty decent plugin for Subversion ... though it feels like it still has some maturing to do ...</p>
+
+<p>Here are two items in particular we&#39;ve run into ...</p>
+
+<p>1) Folder named &quot;tags&quot; doesn&#39;t think it&#39;s under version control</p>
+
+<p>If a folder is named &quot;tags&quot; anywhere ... and it says it&#39;s ignored, or won&#39;t synchronize etc, then go into Preferences for Team -&gt; Ignored Resources and uncheck &quot;tags&quot;</p>
+
+<p>2) Rename of Class name or other file fails with an SVN error</p>
+
+<p>On Windows ... if all you&#39;re doing is changing the CASE of a filename ... it will fail since Windows is case-insensitive.</p>
+
+<p>So ... you need to change the name to something different first .... then to the renamed file with different case.</p>
+
+<p>Example:</p>
+
+<ul>
+<li>ClassName</li>
+<li>ClassNameOld</li>
+<li>CLASSName</li>
+</ul>
+
+<p>Ben</p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/code/2006/01/13/order-by-with-row-limit-in-oracle/">
+        Order by with Row limit in Oracle
+      </a>
+    </h1>
+
+    <span class="post-date">13 Jan 2006</span>
+
+    <p>http://www.sleberknight.com:8080/roller/page/sleberkn/20050714</p>
+
+<hr>
+
+<p>select * from person where last<em>name = &#39;Smith&#39; and rownum
+When you run that query, you find much different results than you expect. This is because Oracle performs the query and applies the rownum to each row in the results before applying the order by clause. So the question is how in the world do you use Oracle&#39;s rownum in concert with an order by clause and get the correct results. I cheated. I have been using Hibernate for a while on an Oracle database and know it is able to handle this exact situation - that is, limiting the number of results and applying an order by clause to a query. So I set the hibernate.show</em>sql property to true and looked at what it generated for a query. It turns out to be very simple and makes use of a subselect:</p>
+
+<p>select * from (
+select * from person where last<em>name = &#39;Smith&#39; order by last</em>name, first_name
+)
+where rownum</p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/code/2005/12/19/jstl-list-sizes/">
+        JSTL: List Sizes
+      </a>
+    </h1>
+
+    <span class="post-date">19 Dec 2005</span>
+
+    <p>This link is useful for getting list sizes etc using JSTL:</p>
+
+<p>http://forum.java.sun.com/thread.jspa?threadID=484828&amp;messageID=3731101</p>
+
+<p>Here is the piece for testing a certain size:</p>
+
+<p><c:**if** test="${osms[1] ne null}"></p>
+
+<p>And if using JSTL 1.1 to get the size:</p>
+
+<p><c:**if** test="${fn:length(list) > 1}&quot;&gt;</p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/code/user%20interface/2005/11/19/more-cool-ajax-links/">
+        More cool AJAX links ...
+      </a>
+    </h1>
+
+    <span class="post-date">19 Nov 2005</span>
+
+    <p>On the Prototype website there are already links to these sites, but
+they&#39;re worth noting ... I haven&#39;t used them yet but likely will.</p>
+
+<p>http://script.aculo.us/
+http://openrico.org/rico/home.page</p>
+
+<p>This e-mail is privileged, confidential and subject to copyright. Any unauthorised use or disclosure of its contents is prohibited.</p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/architecture/code/2005/11/19/content-management-systems-jsr-170-and-magnolia/">
+        Content Management Systems -- JSR 170 and Magnolia
+      </a>
+    </h1>
+
+    <span class="post-date">19 Nov 2005</span>
+
+    <p>In the past week I&#39;ve done a bunch of research on content management systems, and in particular the Java standard JSR 170.</p>
+
+<p>I&#39;ve been playing with Magnolia and so far am fairly impressed with how it works -- though not so impressed with the backend repository which in this case is JackRabbit, the open source reference implementation.</p>
+
+<p>It appears though that for a fairly reasonable price I can get the Enterprise version of Magnolia that uses the commercial JSR-170 compliant repository from Day (http://www.day.com/site/en/index.html). It sounds like it should be MUCH better ... and is very likely what all the big name companies use that Magnolia lists on their site. I&#39;ve requested them to contact me but haven&#39;t heard back yet.</p>
+
+<p>JSR-170 definitely is sounding nice ... though it seems like it still has a way to go before it fully matures as it&#39;s quite new.</p>
+
+<p>Also, the opensource community obviously has not had enough time to make a decent enterprise implementation, as Jackrabbit doesn&#39;t cut it. For example ... I have the system running with JackRabbit ... it only support filesystem persistence right now, so I try to connect another client to it and .... it doesn&#39;t work ( the files are locked) .... so that means it won&#39;t work so well except for small things.</p>
+
+<p>Also, I see no nice way of connecting remotely to the repository using the open source version of Magnolia.</p>
+
+<p>I&#39;ll continue researching this in the coming week.</p>
+
+  </div>
+  
+</div>
+
+<div class="pagination">
+  
+    <span class="pagination-item older">Older</span>
+  
+  
+    
+      <a class="pagination-item newer" href="/page23">Newer</a>
+    
+  
+</div>
+    </div>
+
+  </body>
+</html>

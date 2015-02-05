@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Impact of Tools on Productivity &middot; Ben Christensen
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body class=" layout-reverse">
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+          Ben Christensen
+      </h1>
+      <p class="lead">Software Engineer at Netflix, previously Apple</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/about/">About</a>
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/toc/">Posts</a>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+      <a class="sidebar-nav-item" href="http://twitter.com/benjchristensen">Twitter</a>
+      <a class="sidebar-nav-item" href="http://github.com/benjchristensen">Github</a>
+      <a class="sidebar-nav-item" href="http://github.com/ReactiveX/RxJava">&bull; RxJava</a>
+      <a class="sidebar-nav-item" href="http://github.com/Netflix/Hystrix">&bull; Hystrix</a>
+      <a class="sidebar-nav-item" href="http://linkedin.com/in/benjchristensen">LinkedIn</a>
+    </nav>
+
+
+    <p>&copy; 2015. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Impact of Tools on Productivity</h1>
+  <span class="post-date">08 Jul 2009</span>
+  <p>Yesterday I was <a href="http://benjchristensen.com/2009/07/07/netbeans-heap-profiler-works-well/">analyzing java heap dumps</a> at my office using a Mac Pro with 8 Xeon CPU cores and 16GB of memory.</p>
+
+<p>It took 30-60 seconds to load a 3.5GB file and was very usable while browsing the heap and analyzing it.</p>
+
+<p>When I got home I wanted to peruse it a little more. I just had my laptop, a MacBook Pro with a Core 2 Duo 2.5GHz and 4GB memory.</p>
+
+<p>It took over 20 minutes just to load the file, and the machine was virtually unusable that entire time. Once loaded, every click of the mouse took time ranging from a noticeable lag to multiple seconds of being hung. The machine was swapping to death. Even though I have a very high end laptop, it just couldn&#39;t handle what I was throwing at it as compared to the very powerful desktop machine.</p>
+
+<p>I gave up rather quickly as the <a href="http://benjchristensen.com/2009/06/26/speed-of-thought/">friction</a> of using the system was too high. I didn&#39;t have the patience to deal with it - I just waited until I returned to the office today and again used the Mac Pro.</p>
+
+<p>It has made me think again about what kind of equipment is provided to development teams. I know for a fact that my extended team of 40+ overseas don&#39;t have a single machine in their office as powerful as the Mac Pro I was using.</p>
+
+<p>So, if one of them needed to analyze that heap dump, profile a large server application or do some other intensive task, what would they do? Deal with 20 minute waits as opposed to 30 seconds, and multi-second pauses between each mouse click - and waste a day in their effort instead of minutes or hours of effective work allowing their tools to work as fast as their thoughts?</p>
+
+<p>One could argue that a remote server, such as one at EC2 could be used for a couple hours by using a web based solution like JHat to analyze the heap. Except that <a href="http://twitter.com/benjchristensen/status/2534093699">didn&#39;t work</a> so well.</p>
+
+<p>How much productivity is lost because a developer is given equipment below actual requirements, or by making them use the same machine long past its usefulness (3 years is an eternity for a developer, yet is a standard &#39;depreciation&#39; time for which a developer is often made to endure their machine).</p>
+
+<p>For example, I have 4GB on my laptop and push on that limit constantly. Yet I know a lot of my team only has 2GB, and are working on CPU architectures several years old.</p>
+
+<p>For a US developer this is just silly - as having new equipment every 18-24 months is a fraction of the cost of the persons salary, and in my opinion more than makes up for itself in improved productivity as well as morale.</p>
+
+<p>For an offshore developer, with much lower salary costs it&#39;s a higher fraction, but still I believe its dividends are worth it.</p>
+
+<p>This applies to all types of tools and equipment for developers: faster machines, more memory, <a href="http://martinfowler.com/bliki/BigScreen.html">dual large monitors</a>, commercial software as opposed to everything being opensource and other such things.</p>
+
+<p>People are expensive. I think it&#39;s more cost effective to spend a little on the right equipment and increase productivity and morale of development teams by giving them the right tools - as I had while analyzing heap dumps.</p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/architecture/code/infrastructure/performance/production/production%20problems/resilience%20engineering/tools/2013/06/10/application-resilience-in-a-service-oriented-architecture-using-hystrix/">
+            Application Resilience in a Service-Oriented Architecture using Hystrix
+            <small>10 Jun 2013</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/architecture/code/resilience%20engineering/tools/2013/05/24/hystrix-in-may-2013-thoughtworks-tech-radar/">
+            Hystrix in May 2013 ThoughtWorks Tech Radar
+            <small>24 May 2013</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/architecture/code/infrastructure/performance/production/resilience%20engineering/2013/05/01/functional-reactive-programming-in-the-netflix-api-qcon-london-2013/">
+            Functional Reactive Programming in the Netflix API - QCon London 2013
+            <small>01 May 2013</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>

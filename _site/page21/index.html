@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Ben Christensen &middot; 
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body class=" layout-reverse">
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+          Ben Christensen
+      </h1>
+      <p class="lead">Software Engineer at Netflix, previously Apple</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/about/">About</a>
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/toc/">Posts</a>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+      <a class="sidebar-nav-item" href="http://twitter.com/benjchristensen">Twitter</a>
+      <a class="sidebar-nav-item" href="http://github.com/benjchristensen">Github</a>
+      <a class="sidebar-nav-item" href="http://github.com/ReactiveX/RxJava">&bull; RxJava</a>
+      <a class="sidebar-nav-item" href="http://github.com/Netflix/Hystrix">&bull; Hystrix</a>
+      <a class="sidebar-nav-item" href="http://linkedin.com/in/benjchristensen">LinkedIn</a>
+    </nav>
+
+
+    <p>&copy; 2015. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/performance/user%20interface/2006/11/13/performance-optimizations/">
+        WebApp Performance Optimizations
+      </a>
+    </h1>
+
+    <span class="post-date">13 Nov 2006</span>
+
+    <p>Playing around with real-world performance optimizations found JSMin to work quite well ... and very big gains by doing the following:</p>
+
+<ul>
+<li>combining multiple Javascript files into a single file</li>
+<li>using a JSMin servlet filter to minimize and cache in memory the Javascript file to return</li>
+<li>adding a filter to add HTTP Header caching to static files</li>
+<li>reducing file sizes for product images</li>
+</ul>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/code/2006/11/13/c3p0-validation/">
+        C3P0 Validation
+      </a>
+    </h1>
+
+    <span class="post-date">13 Nov 2006</span>
+
+    <p>We were getting random broken connections ... the following properties got rid of them.</p>
+
+<p>c3p0.testConnectionOnCheckout=true
+c3p0.preferredTestQuery=select 1</p>
+
+<p>See <a href="http://adnanm.blogspot.com/2007/07/monitoring-c3p0-using-jmxjconsole.html">Adnan&#39;s site</a> for more information on C3P0.</p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/performance/user%20interface/2006/10/30/javascript-optimization/">
+        Javascript optimization?
+      </a>
+    </h1>
+
+    <span class="post-date">30 Oct 2006</span>
+
+    <p>From what I can tell ... the best bets are:</p>
+
+<p>Use this to minimize file size: http://alex.dojotoolkit.org/shrinksafe/</p>
+
+<p>Then enabled mod<em>deflate rather than mod</em>gzip</p>
+
+<p>... make sure Apache is doing compression in memory, and not on the filesystem.</p>
+
+<p>Then, actually change JS and CSS filenames each time they change so we can forcefully set very long cache refresh times so they never expire.</p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/performance/user%20interface/2006/10/30/javascript-and-css-optimization/">
+        Javascript and CSS Optimization
+      </a>
+    </h1>
+
+    <span class="post-date">30 Oct 2006</span>
+
+    <p>Some good links on the subject ...</p>
+
+<p>http://yuiblog.com/blog/2006/10/16/pageweight-yui0114/</p>
+
+<p>http://www.crockford.com/javascript/jsmin.html</p>
+
+<p>http://dojotoolkit.org/docs/compressor_system.html</p>
+
+<p>http://www.thinkvitamin.com/features/webapps/serving-javascript-fast</p>
+
+<p>http://www.die.net/musings/page<em>load</em>time/</p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/code/2006/10/27/example-of-manually-doing-a-gzip-http-request/">
+        Example of Manually Doing a GZIP HTTP Request
+      </a>
+    </h1>
+
+    <span class="post-date">27 Oct 2006</span>
+
+    <p>GET /inQuireWeb/pages/home.jsp HTTP/1.1
+Host: inquire.etilize.com
+Connection: close
+Accept-Encoding: gzip
+Accept: text/xml,application/xml,application/xhtml+xml,text/html;
+Accept-Language: en-us,en;q=0.5
+Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7</p>
+
+  </div>
+  
+</div>
+
+<div class="pagination">
+  
+    <a class="pagination-item older" href="/page22">Older</a>
+  
+  
+    
+      <a class="pagination-item newer" href="/page20">Newer</a>
+    
+  
+</div>
+    </div>
+
+  </body>
+</html>

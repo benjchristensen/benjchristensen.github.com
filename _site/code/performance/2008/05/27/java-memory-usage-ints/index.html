@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Java Memory Usage - Ints &middot; Ben Christensen
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body class=" layout-reverse">
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+          Ben Christensen
+      </h1>
+      <p class="lead">Software Engineer at Netflix, previously Apple</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/about/">About</a>
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/toc/">Posts</a>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+      <a class="sidebar-nav-item" href="http://twitter.com/benjchristensen">Twitter</a>
+      <a class="sidebar-nav-item" href="http://github.com/benjchristensen">Github</a>
+      <a class="sidebar-nav-item" href="http://github.com/ReactiveX/RxJava">&bull; RxJava</a>
+      <a class="sidebar-nav-item" href="http://github.com/Netflix/Hystrix">&bull; Hystrix</a>
+      <a class="sidebar-nav-item" href="http://linkedin.com/in/benjchristensen">LinkedIn</a>
+    </nav>
+
+
+    <p>&copy; 2015. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Java Memory Usage - Ints</h1>
+  <span class="post-date">27 May 2008</span>
+  <p>As I work on another set of indexes with large numbers of ints I&#39;ve revisited how different storage mechanisms behave.</p>
+
+<p>I&#39;ve set the JVM to just over 64MB (70MB to be precise).</p>
+
+<p>An int being 4 bytes means that 64MB of ints is as follows:</p>
+
+<p>       int sixtyFourMB = 64 * 1024 * 1024 / 4;</p>
+
+<p>That is 16,777,216 ints.</p>
+
+<p>An int array can successfully store 64MB in the JVM meaning it is properly assigning each int to 4 bytes without overhead.</p>
+
+<p>      int[] vals = new int[sixtyFourMB];</p>
+
+<p>However, if you use ArrayList<Integer> you run out of memory after 3,392,918 ints being added.</p>
+
+<p>That is 1/5 of what can be stored in the int[]!</p>
+
+<p>Now, assigning the space to ArrayList is fine:</p>
+
+<p>                ArrayList<Integer> ints = new ArrayList<Integer>(sixtyFourMB);</p>
+
+<p>It&#39;s when you add the Integer objects (int is cast to Integer behind the scenes in JDK 5) that it dies 1/5 in.</p>
+
+<p>So the overhead is obviously in the Integer object.</p>
+
+<p>I next try the Trove library and use the TIntArrayList.</p>
+
+<p>If I leave it to assign its memory space by default, it runs out of memory at 10,485,760 (62%).</p>
+
+<p>If however I tell it how many ints to expect it sizes itself properly and does not try to grow too large and fits the entire 64MB.</p>
+
+<p>     TIntArrayList ints = new TIntArrayList(sixtyFourMB);</p>
+
+<p>Thus, when backed by an int[] the memory can be efficiently stored, but when using an Object[] memory is very inefficient when attempting to store primitive ints.</p>
+
+<p>Out of curiosity for what an Object() really does with memory I did the following:</p>
+
+<p>            ArrayList<Object> ints = new ArrayList<Object>(sixtyFourMB);</p>
+
+<p>            for (i = 0; i &lt; sixtyFourMB; i++) {</p>
+
+<p>                ints.add(null);</p>
+
+<p>            }</p>
+
+<p>That works, it all fits in memory.</p>
+
+<p>If however I change the &quot;null&quot; to &quot;new Object()&quot; such as:</p>
+
+<p>                ints.add(new Object());</p>
+
+<p>It fails at 702065 ... which means that the object[] has already taken up the space and there is no room for the objects on the heap.</p>
+
+<p>Thus, for storage of simple data primitive arrays is MUCH more efficient.</p>
+
+<p>If the flexibility of the Collections API is needed for dynamic manipulation of those arrays then use <a href="http://trove4j.sourceforge.net/">GNU Trove</a> ... but carefully or the dynamic sizing of the arrays in the background can cause a lot of waste.</p>
+
+<p> </p>
+
+<p>An old but interesting article specifies memory usage by normal objects and classes:</p>
+
+<p>http://www.roseindia.net/javatutorials/determining<em>memory</em>usage<em>in</em>java.shtml</p>
+
+<p>Here are two points from that article of note:</p>
+
+<ol>
+<li><p>The class takes up at least 8 bytes. So, if you say <code>**new** Object();</code> you will allocate 8 bytes on the heap.</p></li>
+<li><p>Each data member takes up 4 bytes, except for long and double which take up 8 bytes. Even if the data member is a byte, it will still take up 4 bytes! In addition, the amount of memory used is increased in 8 byte blocks. So, if you have a class that contains one byte it will take up 8 bytes for the class and 8 bytes for the data, totalling 16 bytes (groan!).</p></li>
+</ol>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/architecture/code/infrastructure/performance/production/production%20problems/resilience%20engineering/tools/2013/06/10/application-resilience-in-a-service-oriented-architecture-using-hystrix/">
+            Application Resilience in a Service-Oriented Architecture using Hystrix
+            <small>10 Jun 2013</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/architecture/code/resilience%20engineering/tools/2013/05/24/hystrix-in-may-2013-thoughtworks-tech-radar/">
+            Hystrix in May 2013 ThoughtWorks Tech Radar
+            <small>24 May 2013</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/architecture/code/infrastructure/performance/production/resilience%20engineering/2013/05/01/functional-reactive-programming-in-the-netflix-api-qcon-london-2013/">
+            Functional Reactive Programming in the Netflix API - QCon London 2013
+            <small>01 May 2013</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>
