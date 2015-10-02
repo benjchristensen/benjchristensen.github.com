@@ -1,37 +1,436 @@
----
-layout: default
-title: Home
----
+<!doctype html>
 
-<div class="posts">
-  {% for post in paginator.posts %}
-  <div class="post">
-    <h1 class="post-title">
-      <a href="{{ post.url }}">
-        {{ post.title }}
-      </a>
-    </h1>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
 
-    <span class="post-date">{{ post.date | date_to_string }}</span>
+  <title>Ben J. Christensen</title>
+  <meta name="description" content="Ben J. Christensen">
+  <meta name="author" content="Ben J. Christensen">
 
-    {{ post.content }}
-  </div>
-  {% endfor %}
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/base-min.css">
+  <link rel=​"stylesheet" href=​"http:​/​/​fonts.googleapis.com/​css?​family=Raleway:​200">​
+  
+  <style>
+  /* copy/paste/modify from http://purecss.io/base/ on top of base-min.css from http://purecss.io/*/
+  
+  /* --------------------------
+   * Element Styles
+   * --------------------------
+  */
+
+  body {
+      min-width: 320px;
+      color: #777;
+      line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: bold;
+      color: rgb(75, 75, 75);
+  }
+  h3 {
+      font-size: 1.25em;
+  }
+  h4 {
+      font-size: 1.125em;
+  }
+
+  a {
+      color: #3b8bba; /* block-background-text-normal */
+      text-decoration: none;
+  }
+
+  a:visited {
+      color: #265778; /* block-normal-text-normal */
+  }
+
+  dt {
+      font-weight: bold;
+  }
+  dd {
+      margin: 0 0 10px 0;
+  }
+
+  aside {
+      background: #1f8dd6; /* same color as selected state on site menu */
+      padding: 0.3em 1em;
+      border-radius: 3px;
+      color: #fff;
+  }
+      aside a, aside a:visited {
+          color: rgb(169, 226, 255);
+      }
+
+
+  /* --------------------------
+   * Layout Styles
+   * --------------------------
+  */
+
+  /* Navigation Push Styles */
+  #layout {
+      position: relative;
+      padding-left: 0;
+  }
+      #layout.active #menu {
+          left: 160px;
+          width: 160px;
+      }
+
+  /* Apply the .box class on the immediate parent of any grid element (pure-u-*) to apply some padding. */
+  .l-box {
+      padding: 1em;
+  }
+
+  .l-wrap {
+      margin-left: auto;
+      margin-right: auto;
+  }
+  .content .l-wrap {
+      margin-left: -1em;
+      margin-right: -1em;
+  }
+
+
+  /* --------------------------
+   * Header Module Styles
+   * --------------------------
+  */
+
+  .header {
+      font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      max-width: 768px;
+      margin: 0 auto;
+      padding: 1em;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+      background: #fff;
+      letter-spacing: 0.05em;
+  }
+      .header h1 {
+          font-size: 300%;
+          font-weight: 100;
+          margin: 0;
+      }
+       .header h2 {
+          font-size: 125%;
+          font-weight: 100;
+          line-height: 1.5;
+          margin: 0;
+          color: #666;
+          letter-spacing: -0.02em;
+      }
+
+
+   /* --------------------------
+    * Content Module Styles
+    * --------------------------
+   */
+
+  /* The content div is placed as a wrapper around all the docs */
+  .content {
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1em;
+      padding-right: 1em;
+      max-width: 768px;
+  }
+
+      .content .content-subhead {
+          margin: 2em 0 1em 0;
+          font-weight: 300;
+          color: #888;
+          position: relative;
+      }
+
+      .content .content-spaced {
+          line-height: 1.8;
+      }
+
+      .content .content-quote {
+          font-family: "Georgia", serif;
+          color: #666;
+          font-style: italic;
+          line-height: 1.8;
+          border-left: 5px solid #ddd;
+          padding-left: 1.5em;
+      }
+
+	  .content .section {
+          padding-left: 1.5em;
+	  }
+
+
+	  /* --------------------------
+	   * Code Styles
+	   * --------------------------
+	  */
+
+	  pre,
+	  code {
+	      font-family: Consolas, Courier, monospace;
+	      color: #333;
+	      background: rgb(250, 250, 250);
+	  }
+
+	  code {
+	      padding: 0.2em 0.4em;
+	      white-space: nowrap;
+	  }
+	  .content p code {
+	      font-size: 90%;
+	  }
+
+	  .code {
+	      margin-left: -1em;
+	      margin-right: -1em;
+	      padding: 1em;
+	      border: 1px solid #eee;
+	      border-left-width: 0;
+	      border-right-width: 0;
+	      overflow-x: auto;
+	      -webkit-overflow-scrolling: touch;
+	  }
+	  .code code {
+	      font-size: 95%;
+	      white-space: pre;
+	      word-wrap: normal;
+	      padding: 0;
+	      background: none;
+	  }
+	  .code-wrap code {
+	      white-space: pre-wrap;
+	      word-wrap: break-word;
+	  }
+
+	  /* --------------------------
+	   * Footer Module Styles
+	   * --------------------------
+	  */
+
+	  .footer {
+	      font-size: 87.5%;
+	      border-top: 1px solid #eee;
+	      margin-top: 3.4286em;
+	      padding: 1.1429em;
+	      background: rgb(250, 250, 250);
+	  }
+
+	  .legal {
+	      line-height: 1.6;
+	      text-align: center;
+	      margin: 0 auto;
+	  }
+
+      .legal-license {
+          margin-top: 0;
+      }
+      .legal-links {
+          list-style: none;
+          padding: 0;
+          margin-bottom: 0;
+      }
+      .legal-copyright {
+          margin-top: 0;
+          margin-bottom: 0;
+      }
+
+
+	  /* --------------------------
+	   * Responsive Styles
+	   * --------------------------
+	  */
+
+	  /* smaller screens */
+	  @media screen and (max-width: 200em) {
+
+	      .header h1 {
+	          font-size: 220%;
+	      }
+		  
+	  }
+	  
+	  /* below are defaults from purecss.io */
+	  
+	  @media screen and (min-width: 35.5em) {
+
+	      .legal-license {
+	          text-align: left;
+	          margin: 0;
+	      }
+	      .legal-copyright,
+	      .legal-links,
+	      .legal-links li {
+	          text-align: right;
+	          margin: 0;
+	      }
+
+	  }
+
+	  @media screen and (min-width: 48em) {
+
+	      .l-wrap,
+	      .l-wrap .content {
+	          padding-left: 1em;
+	          padding-right: 1em;
+	      }
+	      .content .l-wrap {
+	          margin-left: -2em;
+	          margin-right: -2em;
+	      }
+
+	      .header,
+	      .content {
+	          padding-left: 2em;
+	          padding-right: 2em;
+	      }
+
+	      .header h1 {
+	          font-size: 320%;
+	      }
+	      .header h2 {
+	          font-size: 128%;
+	      }
+
+	      .content p {
+	          font-size: 1.125em;
+	      }
+
+	      .code {
+	          margin-left: auto;
+	          margin-right: auto;
+	          border-left-width: 1px;
+	          border-right-width: 1px;
+	      }
+
+	      .table-responsive {
+	          margin-left: auto;
+	          margin-right: auto;
+	      }
+	      .table-responsive table {
+	          border-left-width: 1px;
+	          border-right-width: 1px;
+	      }
+
+	  }
+
+	  @media (max-width: 58em) {
+	      /* Only apply this when the window is smaller. Otherwise, the following
+	      case results in extra padding on the left:
+	          * Make the window small. (Rotate to portrait on a mobile.)
+	          * Tap the menu to trigger the active state.
+	          * Make the window large again. (Rotate to landscape on mobile.)
+	      */
+	      #layout.active {
+	          position: relative;
+	          left: 160px;
+	      }
+	  }
+
+	  @media (min-width: 58em) {
+
+	      #layout {
+	          padding-left: 160px; /* left col width "#menu" */
+	          left: 0;
+	      }
+	      #menu {
+	          left: 160px;
+	      }
+	      .menu-link {
+	          position: fixed;
+	          left: 160px;
+	          display: none;
+	      }
+	      #layout.active .menu-link {
+	          left: 160px;
+	      }
+
+	  }
+
+
+
+  </style>
+</head>
+
+<body>
+
+<div class="header">
+	<h1>Ben J. Christensen</h1>
+
+	<a href="https://www.linkedin.com/in/benjchristensen">LinkedIn</a> | 
+	<a href="https://twitter.com/benjchristensen">Twitter</a> | 
+	<a href="https://www.facebook.com/profile.php?id=100009763380160">Facebook</a> | 
+	<a href="https://keybase.io/benjchristensen">Keybase</a> | 
+	<a href="https://github.com/benjchristensen">Github</a> | 
+	<a href="https://speakerdeck.com/benjchristensen">Speaker Deck</a>
+
 </div>
+<div class="content">
+	
+	<h3>ReactiveSocket</h3>
+	<div class="section">
+		https://github.com/ReactiveSocket
+	</div>
+	
+	<h3>RxJava & Reactive Programming</h3>
+	<div class="section">
+		https://github.com/ReactiveX/RxJava 
+		ThoughtWorks Tech Radar - http://www.thoughtworks.com/radar/languages-and-
+		frameworks/reactive-extensions-across-languages
 
-<div class="pagination">
-  {% if paginator.next_page %}
-    <a class="pagination-item older" href="{{ site.baseurl }}page{{paginator.next_page}}">Older</a>
-  {% else %}
-    <span class="pagination-item older">Older</span>
-  {% endif %}
-  {% if paginator.previous_page %}
-    {% if paginator.page == 2 %}
-      <a class="pagination-item newer" href="{{ site.baseurl }}">Newer</a>
-    {% else %}
-      <a class="pagination-item newer" href="{{ site.baseurl }}page{{paginator.previous_page}}">Newer</a>
-    {% endif %}
-  {% else %}
-    <span class="pagination-item newer">Newer</span>
-  {% endif %}
+		<h4>Presentations</h4>
+
+		<li>Applying RxJava to Existing Applications at Philly ETE 2015 – <a href="https://speakerdeck.com/benjchristensen/applying-rxjava-to-existing-applications-at-philly-ete-2015">Slides</a> <a href=" http://www.infoq.com/presentations/reactive-programming">Video</a></li>
+		<li>Reactive Programming with Rx at QConSF 2014 - <a href="https://speakerdeck.com/benjchristensen/reactive-programming-with-rx-at-qconsf-2014">Slides</a> <a href="http://www.infoq.com/presentations/rx-service-architecture">Video</a></li>
+	</div>
+
+	<h3>Reactive Streams</h3>
+	<div class="section">
+		
+	</div>
+	
+	<h3>Hystrix & Fault Tolerance</h3>
+	<div class="section">
+		Hystrix https://github.com/Netflix/Hystrix 
+		ThoughtWorks Tech Radar - http://www.thoughtworks.com/radar/tools/hystrix
+
+		<h4>Presentations</h4>
+
+		<li>Resilient by Design at React SF 2014 - <a href="https://speakerdeck.com/benjchristensen/resilient-by-design-at-react-sf-2014">Slides</a> <a href=" http://youtu.be/MEgyGamo79I">Video</a></li>
+		<li>Reactive Service Levels at React London 2014 - <a href="https://speakerdeck.com/benjchristensen/reactive-service-levels-at-react-london-2014">Slides</a> <a href="http://www.youtube.com/watch?v=Ftkn1OF895E&feature=share&list=PLSD48HvrE7-Z1stQ1vIIBumB0wK0s8llY&index=7">Video</a></li>
+		<li>RxJava at GOTO Aarhus 2013 - <a href="https://speakerdeck.com/benjchristensen/rxjava-goto-aarhus-2013">Slides</a> <a href="http://youtu.be/_t06LRX0DV0">Video</a></li>
+	</div>
+	
+	<h3>Netflix API/Edge Platform</h3>
+	<div class="section">
+		
+		Fault-tolerance - Hystrix
+		Reactive programming - RxJava
+		Routing - Zuul
+		Autoscaling - Scryer
+		Async IO - RxNetty
+
+		WSPerfLab - https://github.com/Netflix-Skunkworks/WSPerfLab and https://github.com/Netflix-Skunkworks/WSPerfLab/blob/master/test-results/RxNetty_vs_Tomcat_April2015.pdf
+		ReactiveLab.io
+
+		<h4>Related posts for Netflix Tech Blog</h4>
+		<ul>
+			<li>Fault Tolerance in a High Volume, Distributed System http://techblog.netflix.com/2012/02/fault-tolerance-in-high-volume.html</li>
+			<li>Optimizing the Netflix API http://techblog.netflix.com/2013/01/optimizing-netflix-api.html</li>
+			<li>Reactive Programming in the Netflix API with RxJava http://techblog.netflix.com/2013/02/rxjava-netflix-api.html</li>
+		</ul>
+
+		<h4>Presentations</h4>
+
+		<li>Evolution of the Netflix API - QCon SF 2013 - <a href="https://speakerdeck.com/benjchristensen/evolution-of-the-netflix-api-qcon-sf-2013">Slides</a> <a href="http://www.infoq.com/presentations/netflix-api-evolution">Video</a>
+		<li>Application Resilience Engineering and Operations at Netflix with Hystrix - JavaOne 2013 - <a href="https://speakerdeck.com/benjchristensen/application-resilience-engineering-and-operations-at-netflix-with-hystrix-javaone-2013">Slides</a> <a href="https://www.youtube.com/watch?v=RzlluokGi1w">Video</a></li>
+		<li>Application Resilience Engineering & Operations at Netflix - Velocity 2013 Santa Clara - <a href="https://speakerdeck.com/benjchristensen/application-resilience-engineering-and-operations-at-netflix">Slides with notes</a></li>
+
+
+		<h4>Patents</h4>
+	</div>
+
 </div>
+</body>
+</html>
