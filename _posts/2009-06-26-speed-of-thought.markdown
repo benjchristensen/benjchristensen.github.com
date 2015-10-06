@@ -23,6 +23,6 @@ Interestingly, Google has just launched a new site just for "[speeding up the we
 
 The following video shows "the experts" talking about how the human mind perceives changes of 100ms (one tenth of a second).
 
-[youtube=http://www.youtube.com/watch?v=aXJklICrFJI&color1;=0xb1b1b1&color2;=0xcfcfcf&hl;=en&feature;=player_embedded&fs;=1]
+<iframe width="560" height="315" src="https://www.youtube.com/embed/aXJklICrFJI" frameborder="0" allowfullscreen></iframe>
 
 It's my belief that this isn't just a "nice to have" feature. If a product, service or application wants to be adopted and deemed "necessary" by its users, its performance must reduce friction as much as technically feasible to the point where it approaches or achieves "speed of thought".
