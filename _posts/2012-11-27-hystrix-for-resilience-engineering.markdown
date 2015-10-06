@@ -21,4 +21,4 @@ Hystrix evolved out of resilience engineering work that the Netflix API team beg
 
 
 
-![](http://benjchristensen.files.wordpress.com/2012/11/hystrix-logo-tagline-vertical.png)
+![](images/hystrix-logo-tagline-vertical.png)

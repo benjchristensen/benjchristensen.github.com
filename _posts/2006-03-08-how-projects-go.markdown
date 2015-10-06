@@ -7,4 +7,4 @@ slug: how-projects-go
 title: How projects go ...
 ---
 
-[![Software Project](https://benjchristensen.files.wordpress.com/2007/04/software-project.thumbnail.jpg)](http://benjchristensen.files.wordpress.com/2007/04/software-project.jpg)
+<img src="images/software-project.jpg">
