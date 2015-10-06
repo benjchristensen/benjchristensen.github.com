@@ -1,0 +1,23 @@
+---
+author: benjchristensen
+comments: true
+date: 2006-02-12 00:17:00+00:00
+layout: post
+slug: eclipse-wtp-10
+title: Eclipse WTP 1.0
+wordpress_id: 9
+categories:
+- Tools
+---
+
+Just been playing with WTP 1.0 from Eclipse to see if I can use it instead of MyEclipseIDE.
+
+It took some playing around to get it working and a feel for it ... it's pretty close to being able to take care of everything we need ... without the bloat that MyEclipseIDE is becoming.
+
+It also seems to have a nice server deployment/management system ...
+
+This particular bug is the clincher that's making me wait until 1.5 is released to re-evaluate.
+
+https://bugs.eclipse.org/bugs/show_bug.cgi?id=121603
+
+Ben

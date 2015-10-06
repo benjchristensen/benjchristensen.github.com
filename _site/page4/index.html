@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Ben Christensen &middot; 
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body class=" layout-reverse">
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+          Ben Christensen
+      </h1>
+      <p class="lead">Software Engineer at Netflix, previously Apple</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/about/">About</a>
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/toc/">Posts</a>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+      <a class="sidebar-nav-item" href="http://twitter.com/benjchristensen">Twitter</a>
+      <a class="sidebar-nav-item" href="http://github.com/benjchristensen">Github</a>
+      <a class="sidebar-nav-item" href="http://github.com/ReactiveX/RxJava">&bull; RxJava</a>
+      <a class="sidebar-nav-item" href="http://github.com/Netflix/Hystrix">&bull; Hystrix</a>
+      <a class="sidebar-nav-item" href="http://linkedin.com/in/benjchristensen">LinkedIn</a>
+    </nav>
+
+
+    <p>&copy; 2015. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/code/tools/2011/10/23/junit-tests-as-inner-classes/">
+        JUnit Tests as Inner Classes 
+      </a>
+    </h1>
+
+    <span class="post-date">23 Oct 2011</span>
+
+    <p>For several years on multiple Java projects I have written my unit tests as inner classes of the class they are testing. I have never liked or bought into the idea of putting unit tests in a separate class in a separate source folder. I am fine with and like having functional and/or system tests off in that separate ./test/ source folder – just not the unit tests.</p>
+
+<p>Following are my reasons why I find it so much more productive and beneficial to write the unit tests as inner classes.</p>
+
+<p><em>Note on terminology: I will use &quot;concrete class&quot; to represent the class that needs to be tested.</em></p>
+
+<p><strong>Low Friction</strong></p>
+
+<p><a href="https://gist.github.com/1198069"><img src="http://benjchristensen.files.wordpress.com/2011/10/jsonutilityunittests.png" alt=""></a></p>
+
+<p>Unit testing should not feel like a burden, if it does many will likely not do it. Sure, developers often agree on the surface that writing unit tests is &quot;the right thing to do&quot;, but in practice most developers don&#39;t do it. There are many reasons, but I believe one of them is that the friction for doing it is too high in most cases. Partly this is because unit tests off in another source folder have no context to the concrete class being worked on and rely upon human memory and tedious process to find, manage and keep in sync with the concrete class through the development cycle - especially when it&#39;s someone other than the original developer of the class and tests.</p>
+
+<p>Putting the unit tests in an inner class greatly reduces the friction of writing and maintaining unit tests for the following reasons:</p>
+
+<ul>
+<li><p>I only have to deal with a single class in my file/package/class navigator instead of two</p></li>
+<li><p>I don&#39;t have to open and manage 2 editor windows/tabs for every class I want to edit (this is a big deal, especially when most developers have dozens of classes open at any given time)</p></li>
+<li><p>When I use keyboard shortcuts to open that single class file, the unit tests are right there with them, I don&#39;t have to do twice the work to open first the concrete file, then the second file</p></li>
+<li><p>I don&#39;t have to try and maintain the naming convention of 2 separate files, especially through refactorings (more on this below)</p></li>
+<li><p>I can immediately execute the unit tests for the class I&#39;m viewing without going off and searching for another class</p></li>
+<li><p>All developers see the unit tests when they open the class, they don&#39;t need to remember to go looking if there happens to be one (especially in code bases where most classes don&#39;t have tests so they will almost certainly never bother to go looking after failing to find any the first several times).</p></li>
+<li><p>Maintainability is improved because the non-original developers who open a class see the tests and are thereby reminded and encouraged to use and add to them as they edit the class</p></li>
+</ul>
+
+<p>In short, unit tests as inner classes are easy to find, run, work on and maintain. This in turn encourages adoption and maintenance of them.</p>
+
+<p><strong>Context</strong></p>
+
+<p>Another benefit is that the unit tests as an inner class are very contextual to what they are testing. Many of the points of the previous section related to &quot;low friction&quot; are due to the context an inner class has with the concrete class. The tests are &quot;in your face&quot; and can&#39;t be missed. They are obviously intended for testing the class currently being viewed and immediately prompt the developer to use them as part of their development process.</p>
+
+<p>This in turn enforces them being &quot;unit tests&quot; and not becoming system tests by developers starting to test multiple concrete classes from a single test class just because it&#39;s easier to keep adding tests to an existing test class than to create a new test class for every concrete class. Tests in a separate source folder have a very loose relationship to the concrete class, thus it&#39;s very easy for the context to be lost and have it start testing interaction between classes, rather than only unit testing the class it was originally intended to test.</p>
+
+<p>The mental model of unit tests in an inner class is very clear – these tests are for this class and only this class.</p>
+
+<p><strong>Encapsulation</strong></p>
+
+<p>Unit testing should not result in the weakening of encapsulation. This easily starts to happen when the tests are in a separate class and trying to gain full access to a non-trivial concrete class to setup mocks and perform assertions.</p>
+
+<p>Methods and constructors start being made public or package accessible that should have remained private just so that hooks can be provided for the test class.</p>
+
+<p>Arguments are plentiful about whether private methods and inner classes should be unit tested, and in many cases the arguments are valid that only public methods should need to be tested and they will internally exercise the private members.</p>
+
+<p>Unfortunately there are plenty of use cases I have come across where this ideal is not a reality on non-trivial classes due to a desire to keep things encapsulate and hide implementation details.</p>
+
+<p>Here are 2 examples:</p>
+
+<ul>
+<li><p>Example of &#39;wanting&#39; to test privates: lots of internal logic in private methods where building the class via test-driven-development (TDD) is easier by testing the private methods as you go (like building blocks with simple progressive tests), rather than trying to write all the code then test only the public methods at the end. <em>(Yes, it can theoretically all be done via TDD by only going via the public method, and yes I understand the theory of it. In practice however I have found it beneficial to have some types of private methods tested so they are covered as &quot;building blocks&quot; rather than relying on the top level public method test failing and digging into what internal private method failed.)</em></p></li>
+<li><p>Example of &#39;needing&#39; to test privates: an inner class which runs a daemon thread to perform background cache refreshes. This is something I want fully encapsulated and not exposed in any way, but I need to test that it correctly runs, does what it&#39;s supposed to do and mock it out for other unit tests.</p></li>
+</ul>
+
+<p>Specifically on the second example of an inner class and background thread, these could easily be made testable by an external class by exposing things via publics or package private methods or variables, or even by pulling the inner class for the thread into a separate class – but all of those break the encapsulation I was striving for. I do not want the package structure or javadocs to know anything about the implementation details. I want it all private, not package private and certainly not public.</p>
+
+<p>Thus, the only way to get access without breaking encapsulation and good object design is to put the tests inside the concrete class.</p>
+
+<p>Unit tests as inner classes allow for testing without opening member variables or methods to package or public access which then leak the implementation details.</p>
+
+<p><strong>Refactoring</strong></p>
+
+<p>If and when the the concrete class has its name or package refactored the unit tests as an inner class just go along for the ride.</p>
+
+<p>No one needs to remember to go find the associated unit tests and also rename them.</p>
+
+<p>This is particularly important in large codebases maintained by many developers where the person working on the code likely is not the one who originally wrote it.</p>
+
+<p>Otherwise, the unit tests becomes an orphan, in the wrong package with the wrong name. Yes, the tests likely will still work (unless they depend on package access, in which case a compilation error would have flagged it) but they are now less maintainable than ever since the naming convention that was holding them together is gone and nobody will know to go looking for it in future edits to the concrete class.</p>
+
+<p>In short, when unit tests are done as an inner class, everything is fully contained and goes along for the ride regardless of where the concrete class goes or how it&#39;s named.</p>
+
+<p><strong>Self-documenting</strong></p>
+
+<p>When a class has all of its tests as an inner class they act as built-in documentation of what the class is supposed to do, regardless of whether the person looking for the code knows or cares to go looking for unit tests.</p>
+
+<p>They can&#39;t be missed – they are staring the developer in the face at the bottom of the class and in the outline as &quot;UnitTest&quot; with a bunch of methods declaring the functionality that is expected.</p>
+
+<p><strong>Arguments Against This Approach</strong></p>
+
+<p>Unfortunately the use of inner classes for unit testing is not more common so I sometimes get opposition when I work with new teams and they see my tests as inner classes.</p>
+
+<p>Here are the common questions/concerns and my perspective on them:</p>
+
+<p><strong>What About Shipping Test Code to Production?</strong></p>
+
+<p>The small amount of byte code that will get shipped is negligible compared to the amount of 3rd party JARs in most deployments so it hardly dents the size of WAR files being shipped around, and since the classes are never referenced or invoked in production they are never loaded into the class loaders and thus never take up permgen space on the heap.</p>
+
+<p>And if there is a philosophical or actual real reason to not ship test code they can simply be stripped by a build process since they all compile to $UnitTest.class (if that naming convention is used, which I follow and recommend) and can then be easily filtered before building the JAR files.</p>
+
+<p><strong>Apache Doesn&#39;t Do It This Way</strong></p>
+
+<p>Or otherwise said: &#39;Why would you put test classes there!?&#39;.</p>
+
+<p>Apache/Maven <a href="http://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html">advocates</a> having a ./src/main and ./src/test folder and they have enough clout in the industry to have made it the most known place of putting test classes.</p>
+
+<p>Just because it works for them doesn&#39;t mean it&#39;s the best way of doing it and in practice I have found it to be detrimental. I agree that in a theoretical &quot;standard directory layout&quot; it makes sense, but in practice the lack of context, increased friction, maintainability issues and impacts on encapsulation make it less-than-ideal for the developers writing the tests.</p>
+
+<p><strong>Summary</strong></p>
+
+<p>Inner classes are a great home for unit tests when writing Java.</p>
+
+<p>This pattern reduces friction of both writing and maintaining unit tests which in turn increases code coverage, speeds up development, improves maintainability, increases velocity and enables adopting practices such as continuous deployment.</p>
+
+<p>Update (Jan 17 2012):</p>
+
+<p>One drawback of unit tests as inner classes is that they show up in Javadocs. The solution is to filter them out using a custom &#39;Doclet&#39; implementation.</p>
+
+<p>Example can be found here: <a href="https://gist.github.com/1410681">https://gist.github.com/1410681</a></p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/code/performance/2011/10/08/atomiccirculararray/">
+        AtomicCircularArray Wins My Concurrency Throughput Test
+      </a>
+    </h1>
+
+    <span class="post-date">08 Oct 2011</span>
+
+    <p>I recently made several implementations of a RollingNumber (allowing a sum to be calculated over a 10 second period with 1 second increments with continual updates) to determine what would perform best under high-concurrency.</p>
+
+<p>In my case, concurrency means 4-8000 writes/second from hundreds of threads on an 8-core machine and only a handful of reads per second.</p>
+
+<p>In the end, a circular-array (using AtomicReferenceArray internally) won my throughput tests and also achieved my side goal of being non-blocking.</p>
+
+<p>The <a href="https://github.com/benjchristensen/RollingNumberConcurrencyTesting">code is on GitHub</a> and the winning implementation is <a href="https://github.com/benjchristensen/RollingNumberConcurrencyTesting/blob/master/src/RollingNumberViaTryLockWithAtomicCircularArray.java">RollingNumberViaTryLockWithAtomicCircularArray</a>.</p>
+
+<p>Note that this code is NOT what I would deploy in production, since I forced each implementation to comply to the same interface so they could all be run by my test-harness.</p>
+
+<p>However, a modified version of RollingNumberViaTryLockWithAtomicCircularArray is being run in production processing billions of writes per day.</p>
+
+<p>Another aspect of the test is the use of ReentrantLock.tryLock() instead of a synchronized block. The tryLock() works well in this use-case, allowing only 1 thread to get the lock and routing all others around it instead of blocking them.</p>
+
+<p><strong>Test Results</strong></p>
+
+<p>Here are charts (higher is better) showing the differences in performance between implementations on two different machines:</p>
+
+<p><strong>MacBook Pro 2.2GHz Intel Core i7, 8GB Memory, SSD Drive, OSX Lion 10.7.1</strong></p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ uname -a
+Darwin 11.1.0 Darwin Kernel Version 11.1.0: Tue Jul 26 16:07:11 PDT 2011; root:xnu-1699.22.81~1/RELEASE_X86_64 x86_64
+
+$ java -version
+java version &quot;1.6.0_26&quot;
+Java(TM) SE Runtime Environment (build 1.6.0_26-b03-383-11A511)
+Java HotSpot(TM) 64-Bit Server VM (build 20.1-b02-383, mixed mode)
+</code></pre></div>
+<p>The winner is the blue bar which is the highest.</p>
+
+<p><a href="http://benjchristensen.files.wordpress.com/2011/10/concurrent_throughput_rollingnumber_macbookpro.png"><img src="http://benjchristensen.files.wordpress.com/2011/10/concurrent_throughput_rollingnumber_macbookpro.png?w=800" alt=""></a></p>
+
+<p><strong>Amazon EC2 m2.4xlarge</strong>
+High-Memory Quadruple Extra Large Instance 68.4 GB of memory, 26 EC2 Compute Units (8 virtual cores with 3.25 EC2 Compute Units each), 1690 GB of local instance storage, 64-bit platform</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ uname -a
+Linux 2.6.21.7-2.ec2.v1.3.fc8xen #1 SMP Sat Sep 25 01:16:50 EDT 2010 x86_64 x86_64 x86_64 GNU/Linux
+
+$ /usr/java/latest/bin/java -version
+java version &quot;1.6.0_25&quot;
+Java(TM) SE Runtime Environment (build 1.6.0_25-b06)
+Java HotSpot(TM) 64-Bit Server VM (build 20.0-b11, mixed mode)
+</code></pre></div>
+<p>The winner is the orange bar which is the highest.</p>
+
+<p><a href="http://benjchristensen.files.wordpress.com/2011/10/concurrent_throughput_rollingnumber_ec2.png"><img src="http://benjchristensen.files.wordpress.com/2011/10/concurrent_throughput_rollingnumber_ec2.png?w=800" alt=""></a></p>
+
+<p><strong>Running the Test</strong></p>
+
+<p>You can run the test using an <a href="https://github.com/downloads/benjchristensen/RollingNumberConcurrencyTesting/RollingNumberThroughputTest.jar">executable JAR</a> with the command:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">java -Xmx1g -jar RollingNumberThroughputTest.jar
+</code></pre></div>
+<p>The test also validates that the code does what it should and is able to find non-thread-safe implementations by looking for incorrect math caused by concurrency bugs.</p>
+
+<p><strong>Conclusion</strong></p>
+
+<p>I found it very interesting how differently the results were on the 2 machines (operating systems and CPUs are very different, the JVM implementations are also different). In both cases though the AtomicCircularArray performed better, far better on the EC2 instance running the Sun JVM.</p>
+
+<p>These tests provided me with the data to choose AtomicCircularArray and as mentioned above it is similar to what I&#39;m now using in production.</p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/code/user%20interface/2011/08/08/simple-sparkline-using-svg-path-and-d3-js/">
+        Simple Sparkline using SVG Path and D3.js
+      </a>
+    </h1>
+
+    <span class="post-date">08 Aug 2011</span>
+
+    <p>I&#39;ve been playing with SVG visualization and the <a href="http://mbostock.github.com/d3/">d3.js</a> library (replacement to <a href="http://mbostock.github.com/protovis/">Protovis</a>).</p>
+
+<p>As a starting point this is a simple line chart used as a sparkline. The HTML and Javascript provide a boiler plate from which more complex visualizations and charts can be built.</p>
+
+<p><img src="http://benjchristensen.files.wordpress.com/2011/08/screen-shot-2011-08-08-at-10-47-16-pm.png?w=800" alt=""></p>
+
+<p>Here are links to the code and working example:</p>
+
+<p><a href="http://bl.ocks.org/1133472">http://bl.ocks.org/1133472</a>
+<a href="https://gist.github.com/1133472"> https://gist.github.com/1133472</a></p>
+
+<p>To make the size more applicable to inline <img src="http://benjchristensen.files.wordpress.com/2011/08/screen-shot-2011-08-08-at-11-00-18-pm.png?w=800" alt=""> use as a sparkline decrease the ranges:
+<code>
+var x = d3.scale.linear().domain([0, 10]).range([0, 20]);
+var y = d3.scale.linear().domain([0, 10]).range([0, 10]);
+</code></p>
+
+<p>UPDATE: I added another version that shows animations with transformations and transitions.</p>
+
+<p><a href="http://bl.ocks.org/1148374">http://bl.ocks.org/1148374</a>
+<a href="https://gist.github.com/1148374">https://gist.github.com/1148374</a></p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/tools/2011/06/21/automount-afp-via-autofs-in-mac-osx-snow-leopard/">
+        Automount AFP via autofs in Mac OSX (Snow Leopard)
+      </a>
+    </h1>
+
+    <span class="post-date">21 Jun 2011</span>
+
+    <p>I wanted a mount point that was automatic from my desktop to laptop and didn&#39;t need me to manually re-connect each time I came back to it.</p>
+
+<p>After a bit of research, trial and error I figured out the correct incantation:</p>
+
+<p>Edit the /etc/fstab (create if not there) to be:
+<code>
+HOSTNAME:MOUNTPOINT /PATH_ON_MACHINE_TO_USE_AS_MOUNT url automounted,url==afp://USERNAME:PASSWORD@HOSTNAME/MOUNTPOINT 0 0
+</code></p>
+
+<p>Note that &quot;MOUNTPOINT&quot; on Mac for a users directory is NOT &quot;/Users/username&quot;, it is just &quot;username&quot;.</p>
+
+<p>To restart the automounter type:
+<code>
+automount -vc
+</code></p>
+
+<p>It will mount the newly defined mountpoint and create the folder defined with PATH<em>ON</em>MACHINE<em>TO</em>USE<em>AS</em>MOUNT.</p>
+
+<p>Some links I found useful while researching:</p>
+
+<p><a href="http://forums.plexapp.com/index.php/topic/14201-howto-automount-afpsmb-shares-using-autofs/">http://forums.plexapp.com/index.php/topic/14201-howto-automount-afpsmb-shares-using-autofs/</a>
+<a href="http://rajeev.name/2007/11/23/autofs-goodness-in-apples-leopard-105-part-ii/">http://rajeev.name/2007/11/23/autofs-goodness-in-apples-leopard-105-part-ii/</a></p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/code/2011/05/28/tweet-archiver/">
+        Tweet Archiver
+      </a>
+    </h1>
+
+    <span class="post-date">28 May 2011</span>
+
+    <p>I wanted to learn Ruby so wrote a script to do something I&#39;ve wanted for a while - a simple mechanism to retrieve all of my Tweets using the Twitter API.</p>
+
+<p><a href="https://github.com/benjchristensen/TweetArchiver">https://github.com/benjchristensen/TweetArchiver</a></p>
+
+<p>Eventually I&#39;ll add the functionality I want that will expand all shortened links and perhaps even download pictures that I&#39;ve linked to or posted via services such as TwitPic.</p>
+
+<p>Anyway, Ruby is kind of perfect for this type of hacking it seems and now I can archive my Twitter history easily (and yes I know there are lots of other people who have done this before ... don&#39;t bother telling me, I just needed something more than &quot;Hello World&quot;).</p>
+
+  </div>
+  
+</div>
+
+<div class="pagination">
+  
+    <a class="pagination-item older" href="/page5">Older</a>
+  
+  
+    
+      <a class="pagination-item newer" href="/page3">Newer</a>
+    
+  
+</div>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Optimizing the Netflix API &middot; Ben Christensen
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body class=" layout-reverse">
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+          Ben Christensen
+      </h1>
+      <p class="lead">Software Engineer at Netflix, previously Apple</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/about/">About</a>
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/toc/">Posts</a>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+      <a class="sidebar-nav-item" href="http://twitter.com/benjchristensen">Twitter</a>
+      <a class="sidebar-nav-item" href="http://github.com/benjchristensen">Github</a>
+      <a class="sidebar-nav-item" href="http://github.com/ReactiveX/RxJava">&bull; RxJava</a>
+      <a class="sidebar-nav-item" href="http://github.com/Netflix/Hystrix">&bull; Hystrix</a>
+      <a class="sidebar-nav-item" href="http://linkedin.com/in/benjchristensen">LinkedIn</a>
+    </nav>
+
+
+    <p>&copy; 2015. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Optimizing the Netflix API</h1>
+  <span class="post-date">30 Apr 2013</span>
+  <p>Originally written for and posted on the <a href="http://techblog.netflix.com/2013/01/optimizing-netflix-api.html">Netflix Tech Blog</a>:</p>
+
+<p>About a year ago the Netflix API team began redesigning the API to improve performance and enable UI engineering teams within Netflix to optimize client applications for specific devices.  Philosophies of the redesign were introduced in a previous post about <a href="http://techblog.netflix.com/2012/07/embracing-differences-inside-netflix.html">embracing the differences</a> between the different clients and devices.</p>
+
+<p>This post is part one of a series on the architecture of our redesigned API.</p>
+
+<h1>Goals</h1>
+
+<p>We had multiple goals in creating this system, as follows:</p>
+
+<p>Reduce Chattiness</p>
+
+<p>One of the key drivers in pursuing the <a href="http://techblog.netflix.com/2011/02/redesigning-netflix-api.html">redesign</a> in the first place was to reduce the chatty nature of our client/server communication, which could be hindering the overall performance of our device implementations.</p>
+
+<p>Due to the generic and granular nature of the original REST-based Netflix API, each call returns only a portion of functionality for a given user experience, requiring client applications to make multiple calls that need to be assembled in order to render a single user experience.  This interaction model is illustrated in the following diagram:</p>
+
+<p><img src="http://benjchristensen.files.wordpress.com/2013/05/90083-request-multi_1252.png" alt=""></p>
+
+<p>To reduce the chattiness inherent in the REST API, the discrete requests in the diagram above should be collapsed into a single request optimized for a given client.  The benefit is that the device then pays the price of WAN latency once and leverages the low latency and more powerful hardware server-side. As a side effect, this also eliminates redundancies that occur for every incoming request.</p>
+
+<p><img src="http://benjchristensen.files.wordpress.com/2013/05/7d4c6-request-single_1252.png" alt=""></p>
+
+<p>A single optimized request such as this must embrace server-side parallelism to at least the same level as previously achieved through multiple network requests from the client.  Because the server-side parallelized requests are running in the same network, each one should be more performant than if it was executed from the device.  This must be achieved without each engineer implementing an endpoint needing to become an expert in low-level threading, synchronization, thread-safety, concurrent data structures, non-blocking IO and other such concerns.</p>
+
+<p>Distribute API Development</p>
+
+<p>A single team should not become a bottleneck nor need to have expertise on every client application to create optimized endpoints.  Rapid innovation through fast, decoupled development cycles across a wide variety of device types and distributed ownership and expertise across teams should be enabled.  Each client application team should be capable of implementing and operating their own endpoints and the corresponding requests/responses.</p>
+
+<p>Mitigate Deployment Risks</p>
+
+<p>The Netflix API is a Java application running on hundreds of servers processing 2+ billion incoming requests a day for millions of customers around the world.  The system must mitigate risks inherent in enabling rapid and frequent deployment by multiple teams with minimal coordination.</p>
+
+<p>Support Multiple Languages</p>
+
+<p>Engineers implementing endpoints come from a wide variety of backgrounds with expertise including Javascript, Objective-C, Java, C, C#, Ruby, Python and others.  The system should be able to support multiple languages at the same time.</p>
+
+<p>Distribute Operations</p>
+
+<p>Each client team will now manage the deployment lifecycle of their own web service endpoints.  Operational tools for monitoring, debugging, testing, canarying and rolling out code must be exposed to a distributed set of teams so teams can operate independently.</p>
+
+<h1>Architecture</h1>
+
+<p>To achieve the goals above our architecture distilled into a few key points:</p>
+
+<ul>
+<li><p>dynamic polyglot runtime</p></li>
+<li><p>fully asynchronous service layer</p></li>
+<li><p>functional reactive programming model</p></li>
+</ul>
+
+<p>The following diagram and subsequent annotations explain the architecture:</p>
+
+<p><img src="http://benjchristensen.files.wordpress.com/2013/05/72a7d-architecture-overview_1252.png" alt=""></p>
+
+<p>[1] Dynamic Endpoints</p>
+
+<p>All new web service endpoints are now dynamically defined at runtime. New endpoints can be developed, tested, canaried and deployed by each client team without coordination (unless they depend on new functionality from the underlying API Service Layer shown at item 5 in which case they would need to wait until after those changes are deployed before pushing their endpoint).</p>
+
+<p>[2] Endpoint Code Repository and Management</p>
+
+<p>Endpoint code is published to a Cassandra multi-region cluster (globally replicated) via a RESTful Endpoint Management API used by client teams to manage their endpoints.</p>
+
+<p>[3] Dynamic Polyglot JVM Language Runtime</p>
+
+<p>Any JVM language can be supported so each team can use the language best suited to them.</p>
+
+<p>The Groovy JVM language was chosen as our first supported language. The existence of first-class functions (closures), list/dictionary syntax, performance and debuggability were all aspects of our decision.  Moreover, Groovy provides syntax comfortable to a wide range of developers, which helps to reduce the learning curve for the first language on the platform.</p>
+
+<p>[4 &amp; 5] Asynchronous Java API + Functional Reactive Programming Model</p>
+
+<p>Embracing concurrency was a key requirement to achieve performance gains but abstracting away thread-safety and parallel execution implementation details from the client developers was equally important in reducing complexity and speeding up their rate of innovation.  Making the Java API fully asynchronous was the first step as it allows the underlying method implementations to control whether something is executed concurrently or not without the client code changing.  We chose a functional reactive approach to handling composition and conditional flows of asynchronous callbacks. Our implementation is modeled after <a href="https://rx.codeplex.com/">Rx Observables</a>.</p>
+
+<p>[6] Hystrix Fault Tolerance</p>
+
+<p>As we have described in a <a href="http://techblog.netflix.com/2012/02/fault-tolerance-in-high-volume.html">previous post</a>, all service calls to backend systems are made via the Hystrix fault tolerance layer (which was <a href="http://techblog.netflix.com/2012/11/hystrix.html">recently open sourced</a>, along with its <a href="http://techblog.netflix.com/2012/12/hystrix-dashboard-and-turbine.html">dashboard</a>) that isolates the dynamic endpoints and the API Service Layer from the inevitable failures that occur while executing billions of network calls each day from the API to backend systems.</p>
+
+<p>The Hystrix layer is inherently mutlti-threaded due to its use of threads for isolating dependencies and thus is leveraged for concurrent execution of blocking calls to backend systems. These asynchronous requests are then composed together via the functional reactive framework.</p>
+
+<p>[7] Backend Services and Dependencies</p>
+
+<p>The API Service Layer abstracts away all backend services and dependencies behind facades.  As a result, endpoint code accesses “functionality” rather than a “system”.  This allows us to change underlying implementations and architecture with no or limited impact on the code that depends on the API.  For example, if a backend system is split into 2 different services, or 3 are combined into one, or a remote network call is optimized into an in-memory cache, none of these changes should affect endpoint code and thus the API Service Layer ensures that object models and other such tight-couplings are abstracted and not allowed to “leak” into the endpoint code.</p>
+
+<p>Summary</p>
+
+<p>The new Netflix API architecture is a significant departure from our previous generic RESTful API. </p>
+
+<p>Dynamic JVM languages combined with an asynchronous Java API and the functional reactive programming model have proven to be a powerful combination to enable safe and efficient development of highly concurrent code.</p>
+
+<p>The end result is a fault-tolerant, performant platform that puts control in the hands of those who know their target applications the best.</p>
+
+<p>Following posts will provide further implementation and operational details about this new architecture.</p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/architecture/code/infrastructure/performance/production/production%20problems/resilience%20engineering/tools/2013/06/10/application-resilience-in-a-service-oriented-architecture-using-hystrix/">
+            Application Resilience in a Service-Oriented Architecture using Hystrix
+            <small>10 Jun 2013</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/architecture/code/resilience%20engineering/tools/2013/05/24/hystrix-in-may-2013-thoughtworks-tech-radar/">
+            Hystrix in May 2013 ThoughtWorks Tech Radar
+            <small>24 May 2013</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/architecture/code/infrastructure/performance/production/resilience%20engineering/2013/05/01/functional-reactive-programming-in-the-netflix-api-qcon-london-2013/">
+            Functional Reactive Programming in the Netflix API - QCon London 2013
+            <small>01 May 2013</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>

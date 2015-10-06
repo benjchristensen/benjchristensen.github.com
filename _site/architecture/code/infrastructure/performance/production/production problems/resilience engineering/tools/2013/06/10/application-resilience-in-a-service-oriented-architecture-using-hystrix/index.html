@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Application Resilience in a Service-Oriented Architecture using Hystrix &middot; Ben Christensen
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body class=" layout-reverse">
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+          Ben Christensen
+      </h1>
+      <p class="lead">Software Engineer at Netflix, previously Apple</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/about/">About</a>
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/toc/">Posts</a>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+      <a class="sidebar-nav-item" href="http://twitter.com/benjchristensen">Twitter</a>
+      <a class="sidebar-nav-item" href="http://github.com/benjchristensen">Github</a>
+      <a class="sidebar-nav-item" href="http://github.com/ReactiveX/RxJava">&bull; RxJava</a>
+      <a class="sidebar-nav-item" href="http://github.com/Netflix/Hystrix">&bull; Hystrix</a>
+      <a class="sidebar-nav-item" href="http://linkedin.com/in/benjchristensen">LinkedIn</a>
+    </nav>
+
+
+    <p>&copy; 2015. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Application Resilience in a Service-Oriented Architecture using Hystrix</h1>
+  <span class="post-date">10 Jun 2013</span>
+  <p>Originally written for <a href="http://programming.oreilly.com/2013/06/application-resilience-in-a-service-oriented-architecture.html">programming.oreilly.com</a>:</p>
+
+<p>Web-scale applications such as Netflix serve millions of customers using thousands of servers across multiple data centers. Unmitigated system failures impact user experience, product image, company brand and potentially even revenue. Service-oriented architectures such as these are too complex to completely understand or control and must be treated accordingly. The relationships between nodes are constantly changing as actors within the system independently evolve. Failure in the form of errors and latency will emerge from these relationships and resilient systems can easily &quot;drift&quot; into states of vulnerability. Infrastructure alone cannot be relied upon to achieve resilience. Application instances, as components of a complex system, must isolate failure and constantly audit for change.</p>
+
+<p>At Netflix, we have spent a lot of time and energy engineering resilience into our systems. Among the tools we have built is <a href="https://github.com/Netflix/Hystrix/wiki">Hystrix</a> which specifically focuses on failure isolation and graceful degradation. It evolved from a series of production incidents involving saturated connection and/or thread pools, cascading failures, and misconfigurations of pools, queues, timeouts and other such &quot;minor mistakes&quot; which led to major user impact.</p>
+
+<p><img src="http://benjchristensen.files.wordpress.com/2013/06/blocked-requests-640.png" alt=""></p>
+
+<p>This open source library follows these principles in protecting our systems when novel failures inevitably occur:</p>
+
+<ul>
+<li><p>Isolate client network interaction using the bulkhead and circuit breaker patterns.</p></li>
+<li><p>Fallback and degrade gracefully when possible.</p></li>
+<li><p>Fail fast when fallbacks aren&#39;t available and rapidly recover.</p></li>
+<li><p>Monitor, alert and push configuration changes with low latency (seconds).</p></li>
+</ul>
+
+<p>Restricting concurrent access to a given backend service has proven to be an effective form of <a href="http://www.infoq.com/interviews/Building-Resilient-Systems-Michael-Nygard">bulkheading</a> as it limits the resource utilization to a concurrent request limit smaller than the total resources available in an application instance. We do this using two techniques, <a href="https://github.com/Netflix/Hystrix/wiki/How-it-Works#wiki-Isolation">thread pools and semaphores</a>. Both provide the essential quality of restricting concurrent access while threads provide the added benefit of timeouts so the caller can &quot;walk away&quot; if the underlying work is latent.</p>
+
+<p><img src="http://benjchristensen.files.wordpress.com/2013/06/failing-dependency-640.png" alt=""></p>
+
+<p>Isolating functionality rather than the transport layer is valuable as it not only extends the bulkhead beyond network failures and latency, but also those caused by client code. Examples include request validation logic, conditional routing to different or multiple backends, request serialization, response deserialization, response validation, and decoration. Network responses can be latent, corrupted or incompatibly changed at any time which in turn can result in unexpected failures in this application logic.</p>
+
+<p>Mixed environments will also have several types of clients for the many different types of backends. Each has different configurations and most clients don&#39;t expose themselves easily for auditing or modification in a production environment. Unfortunately it is also generally true that default configurations are not optimal and despite best efforts these leak into a system (particularly via transitive dependencies) and it only takes one misconfigured client to expose a vulnerability that results in a system outage.</p>
+
+<p><img src="http://benjchristensen.files.wordpress.com/2013/06/failing-dependency-box-640.png" alt=""></p>
+
+<p>Bulkheading around all of this - transport layer, network clients and client code - permits reliable protection against changing behavior, misconfigurations, transitive dependencies performing unexpected network activity, response handling failures and overall latency regardless of where it comes from.</p>
+
+<p>Applying bulkheads at the functional level also enables addition of business logic for <a href="https://github.com/Netflix/Hystrix/wiki/How-To-Use#wiki-Fallback">fallback</a> behavior to allow graceful degradation when failure occurs. Failure may come via network or client code exceptions, timeouts, short-circuiting, or concurrent request throttling.  All of them, however, can now be <a href="https://github.com/Netflix/Hystrix/wiki/How-it-Works#wiki-Flow">handled</a> with the same &quot;failure handler&quot; to provide fallback responses. Some functionality may not be able to gracefully degrade so will &quot;fail fast&quot; and shed load until recovery, but many others can return stale data, use secondary systems, use defaults or other such <a href="https://github.com/Netflix/Hystrix/wiki/How-To-Use#wiki-Common-Patterns">patterns</a>.</p>
+
+<p><a href="https://github.com/Netflix/Hystrix/wiki/Operations">Operations and insight</a> into what is going on is equally important to the actual isolation techniques. The key aspects of this are low latency metrics, low latency configuration changes and common insight into all service relationships regardless of how the network transport is being implemented.</p>
+
+<p><img src="http://benjchristensen.files.wordpress.com/2013/06/dashboard-annoted-circuit-640.png" alt=""></p>
+
+<p>A low-latency (~1 second) <a href="https://github.com/Netflix/Turbine">metrics stream</a> is exposed to aggregate metrics from all application instances in a cluster. We use this stream for alerting and <a href="https://github.com/Netflix/Hystrix/wiki/Dashboard">dashboards</a> (as shown in a video clip below and the annotated image above) to provide visualizations of traffic, performance and health of all bulkheads on a system. Near real-time metrics have improved mean-time-to-detection (MTTD) and mean-time-to-recovery (MTTR) and increased operational effectiveness when doing deployments or dealing with production incidents. Configuration changes visually roll across a cluster of servers in seconds and the impact is seen immediately.</p>
+
+<p>[youtube http://www.youtube.com/watch?v=zWM7oAbVL4g&amp;w=640&amp;h=360]</p>
+
+<p>Auditing production is essential to maintaining a resilient system. <a href="http://techblog.netflix.com/2011/07/netflix-simian-army.html">Latency Monkey</a> is used in production to inject latency into the system relationships of the service-oriented architecture. Latency can be far more damaging to a distributed system and is more difficult to address than &quot;fast fail&quot; of machines or code. While running latency simulations Hystrix real-time monitoring allows us to rapidly see the impact, determine if we are safe or need to end the test. Most times these simulations &quot;light up&quot; a Hystrix bulkhead on our dashboards to show they are doing their job to isolate the latency but sometimes we reveal a regression and quickly discover it, end the test and pursue a resolution which is validated in the next test run.</p>
+
+<p>Another form of auditing being applied is tracking all network traffic leaving the JVM and finding those not isolated behind a bulkhead. We use this like a &quot;<a href="https://github.com/Netflix/Hystrix/tree/master/hystrix-contrib/hystrix-network-auditor-agent">canary in a coalmine</a>&quot; that permanently runs and takes a small percentage of production traffic to find network traffic that springs up without isolation. This can occur in the initial canary deployment with new code, or it may occur when unexpected code paths are enabled via transitive dependencies when AB tests are turned on or production configuration is changed and pushed out to a fleet of existing servers.</p>
+
+<p>Graceful degradation is not purely a server-side consideration and our device and UI teams play an equally important role in making the user experience robust and capable of degrading gracefully. For example, the server can use bulkheading to isolate failure and choose to &quot;fail silently&quot; on a portion of a request considered optional but UIs must behave correctly or we may cause the client to fail as it tries to render data not present in a response. Fault injection via Hystrix <a href="http://netflix.github.io/Hystrix/javadoc/com/netflix/hystrix/strategy/executionhook/HystrixCommandExecutionHook.html">execution hooks</a> enables device teams to target specific UIs, devices and accounts to test failure, latency and fallback scenarios and determine whether the client code responds as it should. </p>
+
+<p>Engineering resilience into an application is critical to achieving fault and latency tolerance. Operational considerations and support by client applications are equally important. These principles can be applied in many different ways and approaches will differ by language, technology stack and personal preference but hopefully our experiences, and perhaps even our <a href="http://netflix.github.io">open source software</a>, can inspire improved resilience in your systems.</p>
+
+<p><img src="http://benjchristensen.files.wordpress.com/2013/06/hystrix-logo-tagline-640.png" alt=""></p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/architecture/code/resilience%20engineering/tools/2013/05/24/hystrix-in-may-2013-thoughtworks-tech-radar/">
+            Hystrix in May 2013 ThoughtWorks Tech Radar
+            <small>24 May 2013</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/architecture/code/infrastructure/performance/production/resilience%20engineering/2013/05/01/functional-reactive-programming-in-the-netflix-api-qcon-london-2013/">
+            Functional Reactive Programming in the Netflix API - QCon London 2013
+            <small>01 May 2013</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/architecture/code/performance/production/2013/05/01/functional-reactive-in-the-netflix-api-with-rxjava/">
+            Functional Reactive in the Netflix API with RxJava
+            <small>01 May 2013</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>

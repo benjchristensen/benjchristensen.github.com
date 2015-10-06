@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Ben Christensen &middot; 
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body class=" layout-reverse">
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+          Ben Christensen
+      </h1>
+      <p class="lead">Software Engineer at Netflix, previously Apple</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/about/">About</a>
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/toc/">Posts</a>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+      <a class="sidebar-nav-item" href="http://twitter.com/benjchristensen">Twitter</a>
+      <a class="sidebar-nav-item" href="http://github.com/benjchristensen">Github</a>
+      <a class="sidebar-nav-item" href="http://github.com/ReactiveX/RxJava">&bull; RxJava</a>
+      <a class="sidebar-nav-item" href="http://github.com/Netflix/Hystrix">&bull; Hystrix</a>
+      <a class="sidebar-nav-item" href="http://linkedin.com/in/benjchristensen">LinkedIn</a>
+    </nav>
+
+
+    <p>&copy; 2015. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/code/performance/2007/04/03/sort-performance/">
+        Sort Performance
+      </a>
+    </h1>
+
+    <span class="post-date">03 Apr 2007</span>
+
+    <p>We did some simple testing on various sort algorithms we found and compared them with the Java Arrays.sort QuickSort implementation.</p>
+
+<p>This is rudimentary testing since it&#39;s not attempting to test all the variety of distributions of numbers that could exist and should be tested.</p>
+
+<p>That being said, we are creating a collection of 50k, 500k, or 5million numbers randomly generated, and then cloning that collection to be sorted by each of the algorithms.</p>
+
+<p>This first test had 1/2 the numbers as 4 digits, the other half as 5 digits meaning that in the larger collects, there should be a lot of duplicates.</p>
+
+<p>The second test below had 1/2 the numbers as 4 digits, the other half as 8 digits.</p>
+
+<p>This change in number of digits makes dramatic changes for FlashSort and completely breaks it.</p>
+
+<p>Radix is just bad all the time ... I have yet to figure out where it&#39;s strength lies.</p>
+
+<p>This is not thorough enough to make any conclusion, but I found it interesting nonetheless.</p>
+
+<p><strong><em>Test 1 with 4 &amp; 5 digit numbers</em></strong></p>
+
+<hr>
+
+<h2>Run with 50k</h2>
+
+<p>Arrays.sort(int) =&gt; 15ms
+FlashSort.sort(int) =&gt; 11ms  Valid: true
+fastqs.sort(int) =&gt; 10ms  Valid: true
+eqsort.sort(int) =&gt; 16ms  Valid: true
+radix.sort(int) =&gt; 175ms  Valid: true</p>
+
+<h2>radix.sort(int, 5) =&gt; 130ms  Valid: true</h2>
+
+<h2>Run with 500k</h2>
+
+<p>Arrays.sort(int) =&gt; 101ms
+FlashSort.sort(int) =&gt; 56ms  Valid: true
+fastqs.sort(int) =&gt; 72ms  Valid: true
+eqsort.sort(int) =&gt; 96ms  Valid: true
+radix.sort(int) =&gt; 2164ms  Valid: true</p>
+
+<h2>radix.sort(int, 5) =&gt; 1203ms  Valid: true</h2>
+
+<h2>Run with 5million</h2>
+
+<p>Arrays.sort(int) =&gt; 748ms
+FlashSort.sort(int) =&gt; 717ms  Valid: true
+fastqs.sort(int) =&gt; 780ms  Valid: true
+eqsort.sort(int) =&gt; 1625ms  Valid: true
+radix.sort(int) =&gt; 82218ms  Valid: true</p>
+
+<h2>radix.sort(int, 5) =&gt; 11387ms  Valid: true</h2>
+
+<p><strong><em>Test 1 with 4 &amp; 8 digit numbers</em></strong></p>
+
+<hr>
+
+<h2>Run with 50k</h2>
+
+<p>Arrays.sort(int) =&gt; 14ms
+FlashSort.sort(int) =&gt; 662ms  Valid: true
+fastqs.sort(int) =&gt; 10ms  Valid: true
+eqsort.sort(int) =&gt; 11ms  Valid: true
+radix.sort(int) =&gt; 294ms  Valid: true</p>
+
+<h2>radix.sort(int, 8 ) =&gt; 225ms  Valid: true</h2>
+
+<h2>Run with 500k</h2>
+
+<p>Arrays.sort(int) =&gt; 91ms
+FlashSort.sort(int) =&gt; 17832ms  Valid: true
+fastqs.sort(int) =&gt; 72ms  Valid: true
+eqsort.sort(int) =&gt; 95ms  Valid: true
+radix.sort(int) =&gt; 2066ms  Valid: true</p>
+
+<h2>radix.sort(int, 8 ) =&gt; 2003ms  Valid: true</h2>
+
+<h2>Run with 5million</h2>
+
+<p>Arrays.sort(int) =&gt; 909ms
+FlashSort.sort(int) =&gt; 197796ms  Valid: true
+fastqs.sort(int) =&gt; 825ms  Valid: true
+eqsort.sort(int) =&gt; 1494ms  Valid: true
+radix.sort(int) =&gt; 22957ms  Valid: true</p>
+
+<h2>radix.sort(int, 8 ) =&gt; 20041ms  Valid: true</h2>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/code/performance/2007/03/29/arl-radix-sort/">
+        ARL Radix Sort
+      </a>
+    </h1>
+
+    <span class="post-date">29 Mar 2007</span>
+
+    <p>Very cool whitepaper on ARL Radix Sort showing how it&#39;s better than Quicksort and normal Radix sort.</p>
+
+<p><a href="http://www.nik.no/2002/Maus.pdf"> http://www.nik.no/2002/Maus.pdf</a></p>
+
+<p>... (April 2nd) ... never was able to find a working implementation to try out though ...</p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/code/performance/2007/03/28/high-performance-java-collections/">
+        High Performance Java Collections
+      </a>
+    </h1>
+
+    <span class="post-date">28 Mar 2007</span>
+
+    <p>I&#39;ve been using Gnu Trove collections for years very happily, but someone just sent me a link to something new ...</p>
+
+<p>http://fastutil.dsi.unimi.it/</p>
+
+<p>It looks quite interesting to go try out.</p>
+
+<p>Another related project by the same guys is: http://mg4j.dsi.unimi.it/</p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/architecture/management%20&amp;%20leadership/2007/03/24/elements-of-a-roadmap/">
+        Elements of a Roadmap
+      </a>
+    </h1>
+
+    <span class="post-date">24 Mar 2007</span>
+
+    <p>I found a good list of elements for a roadmap by <a href="http://blogs.msdn.com/nickmalik/archive/2007/03/12/so-what-s-in-a-roadmap-anyway.aspx">NickMalik</a></p>
+
+<ul>
+<li><p>Purpose of this Document  - why write the doc</p></li>
+<li><p>Stakeholder Chart - whose needs are being met with the solution</p></li>
+<li><p>Signoff Chart - timestamp and id of person who signs off.</p></li>
+<li><p>High Level Platform Capabilities - the solution capabilities demanded by the business</p></li>
+<li><p>Business Drivers for the Capabilities - the list of business programs or business teams that will use the system</p></li>
+<li><p>Capability Demand - which business are asking for which capabilities.  An interesting grid.</p></li>
+<li><p>Technical Interdependencies - what other systems rely on this solution.  What other systems does this solution rely on?</p></li>
+<li><p>Enterprise Architecture Concerns - what agreements have been made with EA to get alignment of the solution to EA standards.</p></li>
+<li><p>Architectural Context - one or more diagrams showing how the solution platform will evolve over time.</p></li>
+<li><p>Methodology - how this document and concensus was created.  What meetings were held.  Who was in the room.  (it matters)</p></li>
+<li><p>Roadmap schedule - what timelines everything thinks are reasonable for delivering the needs to different business customers</p></li>
+<li><p>System Quality Attributes - what quality attributes will be stressed in each of the iterations.</p></li>
+<li><p>Alternatives considered - what alternatives to this roadmap were considered and why this one was chosen.</p></li>
+<li><p>Roadmap Risks - what could go wrong and who is assigned to watch for it</p></li>
+<li><p>Platform Historical Narrative - previous decisions and narrative so that we can always answer the question: how did we ever get in a bind like this?</p></li>
+</ul>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/code/2007/03/13/double-check-locking/">
+        Double Check Locking
+      </a>
+    </h1>
+
+    <span class="post-date">13 Mar 2007</span>
+
+    <p>Recently re-visited the double-check-locking pattern (or anti-pattern).</p>
+
+<p>It doesn&#39;t work in JDK 1.4 and earlier ... however, in JDK 5, it&#39;s updated memory model allows it to be used safely.</p>
+
+<p><a href="http://en.wikipedia.org/wiki/Double-checked_locking">Wikipedia - Double Check Locking
+</a></p>
+
+<p><a href="http://blogs.sun.com/cwebster/entry/double_check_locking">Sun Blog on JDK 5 and Double Check Locking
+</a></p>
+
+<p>Another possible solution that has the benefit of enforcing compilation ONLY with JDK 1.5 and later is a use of something called AtomicReference.</p>
+
+<p>I haven&#39;t played with them yet, but some information can be found at:</p>
+
+<p><a href="http://www-128.ibm.com/developerworks/java/library/j-jtp04186/">Introduction to Non-Blocking Algorithms</a></p>
+
+  </div>
+  
+</div>
+
+<div class="pagination">
+  
+    <a class="pagination-item older" href="/page19">Older</a>
+  
+  
+    
+      <a class="pagination-item newer" href="/page17">Newer</a>
+    
+  
+</div>
+    </div>
+
+  </body>
+</html>

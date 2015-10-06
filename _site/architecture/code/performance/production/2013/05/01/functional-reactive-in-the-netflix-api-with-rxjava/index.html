@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Functional Reactive in the Netflix API with RxJava &middot; Ben Christensen
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body class=" layout-reverse">
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+          Ben Christensen
+      </h1>
+      <p class="lead">Software Engineer at Netflix, previously Apple</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/about/">About</a>
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/toc/">Posts</a>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+      <a class="sidebar-nav-item" href="http://twitter.com/benjchristensen">Twitter</a>
+      <a class="sidebar-nav-item" href="http://github.com/benjchristensen">Github</a>
+      <a class="sidebar-nav-item" href="http://github.com/ReactiveX/RxJava">&bull; RxJava</a>
+      <a class="sidebar-nav-item" href="http://github.com/Netflix/Hystrix">&bull; Hystrix</a>
+      <a class="sidebar-nav-item" href="http://linkedin.com/in/benjchristensen">LinkedIn</a>
+    </nav>
+
+
+    <p>&copy; 2015. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Functional Reactive in the Netflix API with RxJava</h1>
+  <span class="post-date">01 May 2013</span>
+  <p>Originally written for and posted on the <a href="http://techblog.netflix.com/2013/02/rxjava-netflix-api.html">Netflix Tech Blog</a>.</p>
+
+<p>by <a href="https://twitter.com/benjchristensen/">Ben Christensen</a> and <a href="https://twitter.com/jhusain">Jafar Husain</a></p>
+
+<p>Our recent post on <a href="http://techblog.netflix.com/2013/01/optimizing-netflix-api.html">optimizing the Netflix API</a>  introduced how our web service endpoints are implemented using a &quot;functional reactive programming&quot; (FRP) model for composition of asynchronous callbacks from our service layer. </p>
+
+<p>This post takes a closer look at how and why we use the FRP model and introduces our open source project RxJava – a Java implementation of <a href="https://rx.codeplex.com">Rx (Reactive Extensions)</a>.</p>
+
+<h2>Embrace Concurrency</h2>
+
+<p>Server-side concurrency is needed to effectively reduce network chattiness. Without concurrent execution on the server, a single &quot;heavy&quot; client request might not be much better than many &quot;light&quot; requests because each network request from a device naturally executes in parallel with other network requests.  If the server-side execution of a collapsed &quot;heavy&quot; request does not achieve a similar level of parallel execution it may be slower than the multiple &quot;light&quot; requests even accounting for saved network latency.</p>
+
+<h2>Futures are Expensive to Compose</h2>
+
+<p><a href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Future.html">Futures</a> are straight-forward to use for a <a href="https://gist.github.com/4670979">single level</a> of asynchronous execution but they start to add non-trivial complexity when they&#39;re <a href="https://gist.github.com/4671081">nested</a>.</p>
+
+<p>Conditional asynchronous execution flows become <a href="https://gist.github.com/4671081#file-futuresb-java-L163">difficult</a> to optimally compose (particularly as latencies of each request vary at runtime) using Futures. It <a href="http://www.amazon.com/gp/product/0321349601?ie=UTF8&amp;tag=none0b69&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0321349601">can be done</a> of course, but it quickly becomes complicated (and thus error prone) or prematurely blocks on &#39;Future.get()&#39;, eliminating the benefit of asynchronous execution.</p>
+
+<h2>Callbacks Have Their Own Problems</h2>
+
+<p>Callbacks offer a solution to the tendency to block on Future.get() by not allowing anything to block. They are naturally efficient because they execute when the response is ready.</p>
+
+<p>Similar to Futures though, they are easy to use with a single level of asynchronous execution but become <a href="https://gist.github.com/4677544">unwieldy</a> with nested composition.</p>
+
+<h2>Reactive</h2>
+
+<p>Functional reactive offers efficient execution and composition by providing a collection of operators capable of filtering, selecting, transforming, combining and composing Observable&#39;s.</p>
+
+<p>The Observable data type can be thought of as a &quot;push&quot; equivalent to <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Iterable.html">Iterable</a> which is &quot;pull&quot;. With an Iterable, the consumer pulls values from the producer and the thread blocks until those values arrive. By contrast with the Observable type, the producer pushes values to the consumer whenever values are available.  This approach is more flexible, because values can arrive synchronously or asynchronously.</p>
+
+<p>The Observable type adds two missing semantics to the Gang of Four&#39;s <a href="http://en.wikipedia.org/wiki/Observer_pattern">Observer</a> pattern, which are available in the Iterable type:  </p>
+
+<ol>
+<li><p>The ability for the producer to signal to the consumer that there is no more data available.</p></li>
+<li><p>The ability for the producer to signal to the consumer that an error has occurred.</p></li>
+</ol>
+
+<p>With these two simple additions, we have unified the Iterable and Observable types. The only difference between them is the direction in which the data flows. This is very important because now any operation we perform on an Iterable, can also be performed on an Observable. Let&#39;s take a look at an example ...</p>
+
+<p>[gist https://gist.github.com/4676544 /]</p>
+
+<h2>Observable Service Layer</h2>
+
+<p>The Netflix API takes advantage of Rx by making the entire service layer asynchronous (or at least appear so) - all &quot;service&quot; methods return an Observable<T>.</p>
+
+<p>Making all return types Observable combined with a functional programming model frees up the service layer implementation to safely use concurrency. It also enables the service layer implementation to:</p>
+
+<ul>
+<li><p>conditionally return immediately from a cache</p></li>
+<li><p>block instead of using threads if resources are constrained</p></li>
+<li><p>use multiple threads</p></li>
+<li><p>use non-blocking IO</p></li>
+<li><p>migrate an underlying implementation from network based to in-memory cache</p></li>
+</ul>
+
+<p>This can all happen without ever changing how client code interacts with or composes responses.</p>
+
+<p>In short, client code treats all interactions with the API as asynchronous but the implementation chooses if something is blocking or non-blocking.</p>
+
+<p>This next example code demonstrates how a service layer method can choose whether to synchronously return data from an in-memory cache or asynchronously retrieve data from a remote service and callback with the data once retrieved. In both cases the client code consumes it the same way.</p>
+
+<p>[gist https://gist.github.com/4675568 /]</p>
+
+<p>Retaining this level of control in the service layer is a major architectural advantage particularly for maintaining and optimizing functionality over time. Many different endpoint implementations can be coded against an Observable API and they work efficiently and correctly with the current thread or one or more worker threads backing their execution.</p>
+
+<p>The following code demonstrates the consumption of an Observable API with a common Netflix use case – a grid of movies:</p>
+
+<p>[gist https://gist.github.com/4679253 /]</p>
+
+<p>That code is declarative and <a href="http://en.wikipedia.org/wiki/Lazy_evaluation">lazy</a> as well as functionally &quot;pure&quot; in that no mutation of state is occurring that would cause thread-safety issues.</p>
+
+<p>The API Service Layer is now free to change the behavior of the methods &#39;getListOfLists&#39;, &#39;getVideos&#39;, &#39;getMetadata&#39;, &#39;getBookmark&#39; and &#39;getRating&#39; – some blocking others non-blocking but all consumed the same way.</p>
+
+<p>In the example, &#39;getListOfLists&#39; pushes each &#39;VideoList&#39; object via &#39;onNext()&#39; and then &#39;getVideos()&#39; operates on that same parent thread. The implementation of that method could however change from blocking to non-blocking and the code would not need to change.</p>
+
+<h2>RxJava</h2>
+
+<p>RxJava is our implementation of Rx for the JVM and is available in the <a href="https://github.com/Netflix/RxJava">Netflix repository in Github</a>.</p>
+
+<p>It is not yet feature complete with the .Net version of Rx, but what is implemented has been in use for the past year in production within the Netflix API. </p>
+
+<p>We are open sourcing the code as version 0.5 as a way to acknowledgement that it&#39;s not yet feature complete. The outstanding work is logged in the <a href="https://github.com/Netflix/RxJava/issues?milestone=1&amp;state=open">RxJava Issues</a>.</p>
+
+<p>Documentation is available on the <a href="https://github.com/Netflix/RxJava/wiki">RxJava Wiki</a> including links to material available on the internet.</p>
+
+<p>Some of the goals of RxJava are:</p>
+
+<ul>
+<li><p>Stay close to the original Rx.Net implementation while adjusting naming conventions and idioms to Java</p></li>
+<li><p>All contracts of Rx should be the same</p></li>
+<li><p>Target the JVM not a language. The first languages supported (beyond Java itself) are <a href="https://github.com/Netflix/RxJava/tree/master/language-adaptors/rxjava-groovy">Groovy</a>, <a href="https://github.com/Netflix/RxJava/tree/master/language-adaptors/rxjava-clojure">Clojure</a>, <a href="https://github.com/Netflix/RxJava/tree/master/language-adaptors/rxjava-scala">Scala</a> and <a href="https://github.com/Netflix/RxJava/tree/master/language-adaptors/rxjava-jruby">JRuby</a>. New language adapters can be <a href="https://github.com/Netflix/RxJava/wiki/How-to-Contribute">contributed</a>.</p></li>
+<li><p>Support Java 5 (to include Android support) and higher with an eventual goal to target a build for Java 8 with its lambda support.</p></li>
+</ul>
+
+<p>Here is an implementation of one of the examples above but using Clojure instead of Groovy:</p>
+
+<p>[gist https://gist.github.com/4676533 /]</p>
+
+<h1>Summary</h1>
+
+<p>Functional reactive programming with RxJava has enabled Netflix developers to leverage server-side conconcurrency without the typical thread-safety and synchronization concerns. The API service layer implementation has control over concurrency primitives, which enables us to pursue system performance improvements without fear of breaking client code.</p>
+
+<p>RxJava is effective on the server for us and it spreads deeper into our code the more we use it.</p>
+
+<p>We hope you find the RxJava project as useful as we have and look forward to your contributions.</p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/architecture/code/infrastructure/performance/production/production%20problems/resilience%20engineering/tools/2013/06/10/application-resilience-in-a-service-oriented-architecture-using-hystrix/">
+            Application Resilience in a Service-Oriented Architecture using Hystrix
+            <small>10 Jun 2013</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/architecture/code/resilience%20engineering/tools/2013/05/24/hystrix-in-may-2013-thoughtworks-tech-radar/">
+            Hystrix in May 2013 ThoughtWorks Tech Radar
+            <small>24 May 2013</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/architecture/code/infrastructure/performance/production/resilience%20engineering/2013/05/01/functional-reactive-programming-in-the-netflix-api-qcon-london-2013/">
+            Functional Reactive Programming in the Netflix API - QCon London 2013
+            <small>01 May 2013</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>
