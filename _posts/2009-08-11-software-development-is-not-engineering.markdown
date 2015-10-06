@@ -18,13 +18,13 @@ The article is well written and there is no value in me repeating it verbatim, s
 The following quotes however are worth me repeating along with my commentary:
 
 
-<blockquote>"**Software development is inherently different from a natural science** such as physics and its metrics are accordingly much less precise."</blockquote>
+<blockquote>"<b>Software development is inherently different from a natural science** such as physics and its metrics are accordingly much less precise.</b>"</blockquote>
 
 
 Software development is not like building a bridge - where the materials, laws of physics and chemistry, labor times etc have all been experienced and practiced thousands of times, can be accurately predicted and correctly planned for, then managed.
 
 
-<blockquote>"**Software development is and always will be somewhat experimental.** The actual software construction isn’t necessarily experimental, but its conception is. And this is where our focus ought to be. It’s where our focus always ought to have been."</blockquote>
+<blockquote>"<b>Software development is and always will be somewhat experimental.</b> The actual software construction isn’t necessarily experimental, but its conception is. And this is where our focus ought to be. It’s where our focus always ought to have been."</blockquote>
 
 
 If we are writing software, it's because we're trying to do something that hasn't been done before or is different in some way from what already exists, otherwise we'll purchase the existing software. We are building a solution to a problem - to create value of some kind.
@@ -38,13 +38,13 @@ Tom DeMarco discusses "metrics" in the most detail in the article, about why we 
 He says:
 
 
-<blockquote>"**For the past 40 years, for example, we’ve tortured ourselves over our inability to finish a software project on time and on budget**. But as I hinted earlier, this never should have been the supreme goal. **The more important goal is transformation**, creating software that changes the world or that transforms a company or how it does business."</blockquote>
+<blockquote>"<b>For the past 40 years, for example, we’ve tortured ourselves over our inability to finish a software project on time and on budget</b>. But as I hinted earlier, this never should have been the supreme goal. <b>The more important goal is transformation</b>, creating software that changes the world or that transforms a company or how it does business."</blockquote>
 
 
 After giving an example of two projects, one creating little value and one creating significant value he states:
 
 
-<blockquote>"This leads us to the odd conclusion that **strict control is something that matters a lot on relatively useless projects** and much less on useful projects. It suggests that **the more you focus on control, the more likely you’re working on a project that’s striving to deliver something of relatively minor value.**"</blockquote>
+<blockquote>"This leads us to the odd conclusion that <b>strict control is something that matters a lot on relatively useless projects</b> and much less on useful projects. It suggests that <b>the more you focus on control, the more likely you’re working on a project that’s striving to deliver something of relatively minor value.</b>"</blockquote>
 
 
 Ironically, I've generally seen the opposite perspective from business - that the "expensive" projects, the ones typically capable of creating the most value, are the ones where the most control of timeline and cost is desired and therefore the most damage done by "management" as opposed to allowing the necessary experimentation, design, thought, research and development to occur to create the most value out of the software.
