@@ -5,10 +5,6 @@ date: 2011-12-09 17:57:17+00:00
 layout: post
 slug: making-the-netflix-api-more-resilient
 title: Making the Netflix API More Resilient
-wordpress_id: 421
-categories:
-- Code
-- Production
 ---
 
 A new [Netflix Tech Blog post](http://techblog.netflix.com/2011/12/making-netflix-api-more-resilient.html) by my manager ([Ben Schmaus](https://twitter.com/#!/schmaus)) discusses how we've been making the Netflix API more resilient through the use of circuit breakers, bounded thread-pools and realtime decision making:

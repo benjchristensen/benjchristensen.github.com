@@ -5,9 +5,6 @@ date: 2009-08-11 16:47:55+00:00
 layout: post
 slug: software-development-is-not-engineering
 title: Software Development Is Not Engineering
-wordpress_id: 221
-categories:
-- Management &amp; Leadership
 ---
 
 I have long considered it a fallacy to call software development "engineering". Even though the term technically works for software as "the science, discipline, art and profession of acquiring and applying technical, scientific and mathematical knowledge to design and implement structures, machines, devices, systems, and processes that safely realize a desired objective or inventions" (see [Wikipedia](http://en.wikipedia.org/wiki/Engineering)), this is not how the term ends up being interpreted and therefore misrepresents how software development actually occurs - since engineering has become synonymous with building physical structures such as buildings, bridges, roads. Recently someone with authority on the subject expressed this opinion much better than I could have, and since he has authority on the subject and in the industry, it means something.

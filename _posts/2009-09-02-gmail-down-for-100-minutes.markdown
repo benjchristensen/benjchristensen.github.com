@@ -5,9 +5,6 @@ date: 2009-09-02 17:11:34+00:00
 layout: post
 slug: gmail-down-for-100-minutes
 title: GMail Down for 100 Minutes
-wordpress_id: 274
-categories:
-- Production Problems
 ---
 
 <blockquote>

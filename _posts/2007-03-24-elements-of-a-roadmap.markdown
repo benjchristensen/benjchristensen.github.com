@@ -5,10 +5,6 @@ date: 2007-03-24 23:53:22+00:00
 layout: post
 slug: elements-of-a-roadmap
 title: Elements of a Roadmap
-wordpress_id: 35
-categories:
-- Architecture
-- Management &amp; Leadership
 ---
 
 I found a good list of elements for a roadmap by [NickMalik](http://blogs.msdn.com/nickmalik/archive/2007/03/12/so-what-s-in-a-roadmap-anyway.aspx)

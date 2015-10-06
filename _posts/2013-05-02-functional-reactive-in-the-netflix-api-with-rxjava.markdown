@@ -5,12 +5,6 @@ date: 2013-05-02 04:08:24+00:00
 layout: post
 slug: functional-reactive-in-the-netflix-api-with-rxjava
 title: Functional Reactive in the Netflix API with RxJava
-wordpress_id: 563
-categories:
-- Architecture
-- Code
-- Performance
-- Production
 ---
 
 Originally written for and posted on the [Netflix Tech Blog](http://techblog.netflix.com/2013/02/rxjava-netflix-api.html).

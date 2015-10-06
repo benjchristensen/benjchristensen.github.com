@@ -5,9 +5,6 @@ date: 2009-07-09 21:21:20+00:00
 layout: post
 slug: google-app-engine-down-for-6-hours
 title: Google App Engine Down for 6 Hours
-wordpress_id: 176
-categories:
-- Production Problems
 ---
 
 In my ongoing collection of "big guys having trouble", Google's "App Engine" services were [down for 6 hours](http://www.theregister.co.uk/2009/07/02/google_app_engine_fail/) on July 2nd.

@@ -5,10 +5,6 @@ date: 2007-10-23 17:25:44+00:00
 layout: post
 slug: quotes-which-made-my-week
 title: Quotes Which Made My Week
-wordpress_id: 53
-categories:
-- Fun
-- Production
 ---
 
 "We accidentally shot ourselves in the foot.

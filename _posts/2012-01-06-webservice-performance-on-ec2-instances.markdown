@@ -5,13 +5,6 @@ date: 2012-01-06 03:24:50+00:00
 layout: post
 slug: webservice-performance-on-ec2-instances
 title: WebService Performance on EC2 Instances
-wordpress_id: 443
-categories:
-- Infrastructure
-- Performance
-tags:
-- amazon ec2
-- performance efficiency
 ---
 
 As part of a cost/performance analysis of [Amazon EC2 instances](http://aws.amazon.com/ec2/instance-types/) I wrote a [very simple Java webapp](https://github.com/benjchristensen/WSPerformanceTest) to allow simple comparison benchmarking.

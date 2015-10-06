@@ -5,10 +5,6 @@ date: 2010-02-01 04:12:41+00:00
 layout: post
 slug: my-job-hunt-how-i-ended-up-at-apple
 title: My Job Hunt - How I Ended Up At Apple
-wordpress_id: 293
-categories:
-- Personal
-- Skills
 ---
 
 I started working for Apple in their iTunes Store division on December 14th 2009. It's been a great 6 weeks so far and I look forward to a long and interesting future here at Apple.

@@ -5,10 +5,6 @@ date: 2011-10-09 05:42:41+00:00
 layout: post
 slug: atomiccirculararray
 title: AtomicCircularArray Wins My Concurrency Throughput Test
-wordpress_id: 399
-categories:
-- Code
-- Performance
 ---
 
 I recently made several implementations of a RollingNumber (allowing a sum to be calculated over a 10 second period with 1 second increments with continual updates) to determine what would perform best under high-concurrency.

@@ -5,10 +5,6 @@ date: 2009-07-07 20:10:33+00:00
 layout: post
 slug: memory-analyzer-cant-handle-large-heaps
 title: Memory Analyzer Can't Handle Large Heaps
-wordpress_id: 157
-categories:
-- Production Problems
-- Tools
 ---
 
 Despite the [claims](http://wiki.eclipse.org/index.php/MemoryAnalyzer/FAQ#Out_of_Memory_Error_while_Running_the_Memory_Analyzer) that [Memory Analyzer](http://www.eclipse.org/mat/) works well with large heaps, the following screenshot is the evidence of my continued inability to have it parse a 3.5GB heap dump.

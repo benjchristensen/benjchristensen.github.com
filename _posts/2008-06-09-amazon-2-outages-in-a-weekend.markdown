@@ -5,9 +5,6 @@ date: 2008-06-09 18:05:07+00:00
 layout: post
 slug: amazon-2-outages-in-a-weekend
 title: Amazon - 2 outages in a weekend
-wordpress_id: 87
-categories:
-- Production Problems
 ---
 
 Hundreds of millions of dollars in infrastructure ... 2 outages in a weekend.

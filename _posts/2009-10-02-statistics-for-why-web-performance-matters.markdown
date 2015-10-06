@@ -5,11 +5,6 @@ date: 2009-10-02 22:29:55+00:00
 layout: post
 slug: statistics-for-why-web-performance-matters
 title: Statistics for Why Web Performance Matters
-wordpress_id: 283
-categories:
-- Performance
-- Production
-- User Interface
 ---
 
 Following are some good posts with further evidence of the impact of webpage/webapp responsiveness to the user experience, amount of usage and ultimately revenue.

@@ -5,11 +5,6 @@ date: 2009-07-17 19:08:08+00:00
 layout: post
 slug: detail-oriented
 title: Detail Oriented
-wordpress_id: 208
-categories:
-- Architecture
-- Management &amp; Leadership
-- Skills
 ---
 
 I'm working on a fairly significant document that covers the requirements and high-level architecture for a new system based on SOA principles to replace an aging application.

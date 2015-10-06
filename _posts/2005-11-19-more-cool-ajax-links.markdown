@@ -5,10 +5,6 @@ date: 2005-11-19 21:14:00+00:00
 layout: post
 slug: more-cool-ajax-links
 title: More cool AJAX links ...
-wordpress_id: 4
-categories:
-- Code
-- User Interface
 ---
 
 On the Prototype website there are already links to these sites, but

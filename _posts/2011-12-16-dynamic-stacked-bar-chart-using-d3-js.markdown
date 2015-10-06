@@ -5,10 +5,6 @@ date: 2011-12-16 23:03:16+00:00
 layout: post
 slug: dynamic-stacked-bar-chart-using-d3-js
 title: Dynamic Stacked Bar Chart Using d3.js
-wordpress_id: 437
-categories:
-- Code
-- User Interface
 ---
 
 A prototype of a stacked bar chart that can dynamically add/remove bars and update the data for each bar implemented using [d3.js](http://mbostock.github.com/d3/).

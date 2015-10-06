@@ -5,10 +5,6 @@ date: 2006-10-30 19:18:00+00:00
 layout: post
 slug: javascript-optimization
 title: Javascript optimization?
-wordpress_id: 21
-categories:
-- Performance
-- User Interface
 ---
 
 From what I can tell ... the best bets are:

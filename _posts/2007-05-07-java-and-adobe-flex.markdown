@@ -5,10 +5,6 @@ date: 2007-05-07 05:47:21+00:00
 layout: post
 slug: java-and-adobe-flex
 title: Java and Adobe Flex
-wordpress_id: 44
-categories:
-- Code
-- Tools
 ---
 
 Bruce Eckel talking about "Hybridizing Java" through the use of Flex for the UI.

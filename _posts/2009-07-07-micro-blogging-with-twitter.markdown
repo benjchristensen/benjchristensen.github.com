@@ -5,10 +5,6 @@ date: 2009-07-07 03:39:13+00:00
 layout: post
 slug: micro-blogging-with-twitter
 title: Micro-Blogging with Twitter
-wordpress_id: 141
-categories:
-- Personal
-- Tools
 ---
 
 I started using Twitter about 2 weeks ago. Before that I thought Twitter was a silly thing. Why would I want to post "what I'm doing" at any given moment?

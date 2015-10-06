@@ -5,9 +5,6 @@ date: 2009-02-02 18:02:59+00:00
 layout: post
 slug: hosted-quickbooks-dead
 title: Hosted Quickbooks Dead
-wordpress_id: 84
-categories:
-- Production Problems
 ---
 
 More big guys having issues.

@@ -5,10 +5,6 @@ date: 2009-08-19 04:09:37+00:00
 layout: post
 slug: initial-impressions-on-ruby-performance
 title: Initial Impressions on Ruby Performance
-wordpress_id: 261
-categories:
-- Code
-- Performance
 ---
 
 I've spent the past day playing with Ruby and decided to test some basic performance - iterating and string parsing - to get an idea of what the performance is really like.

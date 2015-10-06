@@ -5,9 +5,6 @@ date: 2005-12-20 06:32:00+00:00
 layout: post
 slug: jstl-list-sizes
 title: 'JSTL: List Sizes'
-wordpress_id: 6
-categories:
-- Code
 ---
 
 This link is useful for getting list sizes etc using JSTL:

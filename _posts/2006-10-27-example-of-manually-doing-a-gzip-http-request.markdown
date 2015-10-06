@@ -5,9 +5,6 @@ date: 2006-10-27 19:35:00+00:00
 layout: post
 slug: example-of-manually-doing-a-gzip-http-request
 title: Example of Manually Doing a GZIP HTTP Request
-wordpress_id: 19
-categories:
-- Code
 ---
 
 GET /inQuireWeb/pages/home.jsp HTTP/1.1

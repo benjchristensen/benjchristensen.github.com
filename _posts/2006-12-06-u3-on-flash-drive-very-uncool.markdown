@@ -5,7 +5,6 @@ date: 2006-12-06 07:30:00+00:00
 layout: post
 slug: u3-on-flash-drive-very-uncool
 title: U3 on Flash drive very uncool
-wordpress_id: 26
 ---
 
 I agree with this post [http://www.mischel.com/diary/2006/06/23.htm](http://www.mischel.com/diary/2006/06/23.htm)  

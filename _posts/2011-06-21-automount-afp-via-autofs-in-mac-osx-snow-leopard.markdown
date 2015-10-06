@@ -5,9 +5,6 @@ date: 2011-06-21 20:51:34+00:00
 layout: post
 slug: automount-afp-via-autofs-in-mac-osx-snow-leopard
 title: Automount AFP via autofs in Mac OSX (Snow Leopard)
-wordpress_id: 380
-categories:
-- Tools
 ---
 
 I wanted a mount point that was automatic from my desktop to laptop and didn't need me to manually re-connect each time I came back to it.

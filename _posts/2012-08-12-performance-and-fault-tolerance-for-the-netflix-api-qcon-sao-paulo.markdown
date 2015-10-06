@@ -5,12 +5,6 @@ date: 2012-08-12 22:24:02+00:00
 layout: post
 slug: performance-and-fault-tolerance-for-the-netflix-api-qcon-sao-paulo
 title: Performance and Fault Tolerance for the Netflix API - QCon Sao Paulo
-wordpress_id: 504
-categories:
-- Architecture
-- Code
-- Performance
-- Production
 ---
 
 A presentation I gave at QCon Sao Paulo on August 4th 2012 (http://qconsp.com/palestrante/ben-christensen)

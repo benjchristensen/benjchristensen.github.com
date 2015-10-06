@@ -5,14 +5,6 @@ date: 2013-05-02 04:26:52+00:00
 layout: post
 slug: functional-reactive-programming-in-the-netflix-api-qcon-london-2013
 title: Functional Reactive Programming in the Netflix API - QCon London 2013
-wordpress_id: 588
-categories:
-- Architecture
-- Code
-- Infrastructure
-- Performance
-- Production
-- Resilience Engineering
 ---
 
 I had the opportunity to speak at QCon London 2013 and present [Functional Reactive Programming in the Netflix API](http://qconlondon.com/london-2013/speaker/Ben+Christensen):

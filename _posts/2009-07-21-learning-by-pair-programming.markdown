@@ -5,9 +5,6 @@ date: 2009-07-21 02:15:06+00:00
 layout: post
 slug: learning-by-pair-programming
 title: Learning by Pair Programming
-wordpress_id: 211
-categories:
-- Skills
 ---
 
 Last week I learned how to program on the iPhone using Objective-C and Cocoa Touch by having two 2-hour pair programming sessions with [Brent Coursey](http://twitter.com/coursey) and about 8 hours of my own playing around.

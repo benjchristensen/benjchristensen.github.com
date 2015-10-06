@@ -5,9 +5,6 @@ date: 2009-07-01 20:37:43+00:00
 layout: post
 slug: communicating-written-product-requirements
 title: Communicating Product Requirements
-wordpress_id: 123
-categories:
-- Management &amp; Leadership
 ---
 
 I've spent the last day considering product and/or project requirements - in particular how to document and communicate them.

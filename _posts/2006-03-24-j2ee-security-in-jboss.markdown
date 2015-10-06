@@ -5,9 +5,6 @@ date: 2006-03-24 23:10:00+00:00
 layout: post
 slug: j2ee-security-in-jboss
 title: J2EE Security in JBoss
-wordpress_id: 13
-categories:
-- Code
 ---
 
 In the login-config.xml file

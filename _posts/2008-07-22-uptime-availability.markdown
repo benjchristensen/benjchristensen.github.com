@@ -5,9 +5,6 @@ date: 2008-07-22 05:20:25+00:00
 layout: post
 slug: uptime-availability
 title: Uptime & Availability
-wordpress_id: 63
-categories:
-- Production
 ---
 
 A good blog entry that I'm pasting below about the cost/benefit of actually achieving 99.999% uptime and how ludicrous it is for most to even attempt let alone claim it.

@@ -5,9 +5,6 @@ date: 2007-01-05 07:03:00+00:00
 layout: post
 slug: sun-x4200-vs-sun-t1000-inquireserver-inquireweb
 title: Sun x4200 vs Sun T1000 => inQuireServer & inQuireWeb
-wordpress_id: 31
-categories:
-- Performance
 ---
 
 inQuireServer Tests

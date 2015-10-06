@@ -5,10 +5,6 @@ date: 2011-10-23 07:44:30+00:00
 layout: post
 slug: junit-tests-as-inner-classes
 title: 'JUnit Tests as Inner Classes '
-wordpress_id: 416
-categories:
-- Code
-- Tools
 ---
 
 For several years on multiple Java projects I have written my unit tests as inner classes of the class they are testing. I have never liked or bought into the idea of putting unit tests in a separate class in a separate source folder. I am fine with and like having functional and/or system tests off in that separate ./test/ source folder – just not the unit tests.

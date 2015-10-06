@@ -5,11 +5,6 @@ date: 2010-10-16 10:58:33+00:00
 layout: post
 slug: leadership-solitude-and-thinking
 title: Leadership, Solitude and Thinking
-wordpress_id: 330
-categories:
-- Management &amp; Leadership
-- Politics
-- Skills
 ---
 
 These are quotes that I liked on the subject of leadership from the following article which I recommend taking the time to read and think about. 

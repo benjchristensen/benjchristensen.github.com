@@ -5,16 +5,6 @@ date: 2013-06-10 16:13:40+00:00
 layout: post
 slug: application-resilience-in-a-service-oriented-architecture-using-hystrix
 title: Application Resilience in a Service-Oriented Architecture using Hystrix
-wordpress_id: 601
-categories:
-- Architecture
-- Code
-- Infrastructure
-- Performance
-- Production
-- Production Problems
-- Resilience Engineering
-- Tools
 ---
 
 Originally written for [programming.oreilly.com](http://programming.oreilly.com/2013/06/application-resilience-in-a-service-oriented-architecture.html):

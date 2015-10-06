@@ -5,9 +5,6 @@ date: 2007-01-02 07:06:00+00:00
 layout: post
 slug: sun-x4200-vs-sun-t1000-load-server
 title: Sun x4200 vs Sun T1000 => Load Server
-wordpress_id: 30
-categories:
-- Performance
 ---
 
 Testing the Sun T1000 and Sun X4200 continues ...

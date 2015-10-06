@@ -5,9 +5,6 @@ date: 2006-11-14 07:53:00+00:00
 layout: post
 slug: c3p0-validation
 title: C3P0 Validation
-wordpress_id: 22
-categories:
-- Code
 ---
 
 We were getting random broken connections ... the following properties got rid of them.

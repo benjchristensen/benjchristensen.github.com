@@ -6,10 +6,6 @@ layout: post
 published: false
 slug: skill-and-trust-in-business
 title: Skill and Trust in Business
-wordpress_id: 203
-categories:
-- Management &amp; Leadership
-- Skills
 ---
 
 Dictionary.com defines [skill](http://dictionary.reference.com/browse/skill) as:

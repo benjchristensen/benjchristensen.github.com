@@ -5,9 +5,6 @@ date: 2006-02-02 19:26:00+00:00
 layout: post
 slug: subclipse-and-subversion
 title: Subclipse and Subversion
-wordpress_id: 8
-categories:
-- Tools
 ---
 
 Subclipse is a pretty decent plugin for Subversion ... though it feels like it still has some maturing to do ...

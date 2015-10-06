@@ -5,9 +5,6 @@ date: 2007-08-28 13:30:58+00:00
 layout: post
 slug: i-hate-word
 title: I hate Word.
-wordpress_id: 50
-categories:
-- Personal
 ---
 
 I hate Microsoft Word tonight.

@@ -5,9 +5,6 @@ date: 2006-03-31 22:25:00+00:00
 layout: post
 slug: jboss-and-session-persistence
 title: JBoss and session persistence
-wordpress_id: 14
-categories:
-- Code
 ---
 
 JBoss 4.0.3 by default has session persistence turned off.

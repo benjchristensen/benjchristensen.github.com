@@ -5,10 +5,6 @@ date: 2012-05-02 20:04:33+00:00
 layout: post
 slug: line-graphs-using-d3-js
 title: Line Graphs Using d3.js
-wordpress_id: 488
-categories:
-- Code
-- User Interface
 ---
 
 Simple examples of line graphs implemented using d3.js:

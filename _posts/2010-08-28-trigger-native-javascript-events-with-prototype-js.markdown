@@ -5,9 +5,6 @@ date: 2010-08-28 06:01:13+00:00
 layout: post
 slug: trigger-native-javascript-events-with-prototype-js
 title: Trigger Native Javascript Events with Prototype.js
-wordpress_id: 313
-categories:
-- Code
 ---
 
 After much searching and playing with various solutions, I found one at this page:

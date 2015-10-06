@@ -5,11 +5,6 @@ date: 2009-10-15 20:52:19+00:00
 layout: post
 slug: technical-debt-quadrant
 title: Technical Debt Quadrant
-wordpress_id: 290
-categories:
-- Architecture
-- Code
-- Management &amp; Leadership
 ---
 
 Martin Fowler [wrote a blog entry](http://martinfowler.com/bliki/TechnicalDebtQuadrant.html) on technical debt this week that communicates the concepts of "technical debt" and classifies them very well.

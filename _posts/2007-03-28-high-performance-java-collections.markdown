@@ -5,10 +5,6 @@ date: 2007-03-28 21:25:33+00:00
 layout: post
 slug: high-performance-java-collections
 title: High Performance Java Collections
-wordpress_id: 36
-categories:
-- Code
-- Performance
 ---
 
 I've been using Gnu Trove collections for years very happily, but someone just sent me a link to something new ...

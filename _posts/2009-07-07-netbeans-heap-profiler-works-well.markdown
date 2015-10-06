@@ -5,10 +5,6 @@ date: 2009-07-07 20:23:57+00:00
 layout: post
 slug: netbeans-heap-profiler-works-well
 title: Netbeans Heap Profiler Works. Well.
-wordpress_id: 161
-categories:
-- Production Problems
-- Tools
 ---
 
 Netbeans (which I never use) has seemingly come a long way since I last looked at it. The UI is certainly a lot nicer.

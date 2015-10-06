@@ -5,10 +5,6 @@ date: 2007-04-03 14:30:01+00:00
 layout: post
 slug: sort-performance
 title: Sort Performance
-wordpress_id: 38
-categories:
-- Code
-- Performance
 ---
 
 We did some simple testing on various sort algorithms we found and compared them with the Java Arrays.sort QuickSort implementation.

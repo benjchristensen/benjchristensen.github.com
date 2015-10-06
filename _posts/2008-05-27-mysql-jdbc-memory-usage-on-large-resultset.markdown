@@ -5,10 +5,6 @@ date: 2008-05-27 21:23:20+00:00
 layout: post
 slug: mysql-jdbc-memory-usage-on-large-resultset
 title: MySQL JDBC Memory Usage on Large ResultSet
-wordpress_id: 59
-categories:
-- Code
-- Performance
 ---
 
 I recently came across the problem of large resultsets being pulled into a java app via MySQL JDBC. I had dealt with this years ago but forgotten about it.

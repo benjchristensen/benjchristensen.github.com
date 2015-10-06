@@ -5,10 +5,6 @@ date: 2011-08-09 05:52:24+00:00
 layout: post
 slug: simple-sparkline-using-svg-path-and-d3-js
 title: Simple Sparkline using SVG Path and D3.js
-wordpress_id: 388
-categories:
-- Code
-- User Interface
 ---
 
 I've been playing with SVG visualization and the [d3.js](http://mbostock.github.com/d3/) library (replacement to [Protovis](http://mbostock.github.com/protovis/)).

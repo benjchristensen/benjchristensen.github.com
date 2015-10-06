@@ -5,9 +5,6 @@ date: 2006-12-06 05:02:00+00:00
 layout: post
 slug: web-service-performance-with-netliakamai
 title: Web Service Performance with Netli/Akamai
-wordpress_id: 27
-categories:
-- Performance
 ---
 
 Web Service tests performed against Netli and Akamai.

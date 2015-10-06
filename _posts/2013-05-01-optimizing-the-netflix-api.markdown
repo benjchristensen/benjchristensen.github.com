@@ -5,14 +5,6 @@ date: 2013-05-01 04:05:36+00:00
 layout: post
 slug: optimizing-the-netflix-api
 title: Optimizing the Netflix API
-wordpress_id: 574
-categories:
-- Architecture
-- Code
-- Infrastructure
-- Performance
-- Production
-- Resilience Engineering
 ---
 
 Originally written for and posted on the [Netflix Tech Blog](http://techblog.netflix.com/2013/01/optimizing-netflix-api.html):

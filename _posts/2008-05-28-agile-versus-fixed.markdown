@@ -5,9 +5,6 @@ date: 2008-05-28 22:57:22+00:00
 layout: post
 slug: agile-versus-fixed
 title: Agile versus Fixed
-wordpress_id: 60
-categories:
-- Management &amp; Leadership
 ---
 
 

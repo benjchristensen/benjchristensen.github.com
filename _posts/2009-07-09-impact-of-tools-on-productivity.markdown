@@ -5,9 +5,6 @@ date: 2009-07-09 01:22:50+00:00
 layout: post
 slug: impact-of-tools-on-productivity
 title: Impact of Tools on Productivity
-wordpress_id: 173
-categories:
-- Tools
 ---
 
 Yesterday I was [analyzing java heap dumps](http://benjchristensen.com/2009/07/07/netbeans-heap-profiler-works-well/) at my office using a Mac Pro with 8 Xeon CPU cores and 16GB of memory.

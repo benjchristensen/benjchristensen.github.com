@@ -5,9 +5,6 @@ date: 2008-02-07 01:30:01+00:00
 layout: post
 slug: how-to-strip-invalid-xml-characters
 title: How to strip invalid XML characters
-wordpress_id: 54
-categories:
-- Code
 ---
 
 http://cse-mjmcl.cse.bris.ac.uk/blog/2007/02/14/1171465494443.html   

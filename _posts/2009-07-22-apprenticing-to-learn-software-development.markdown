@@ -5,9 +5,6 @@ date: 2009-07-22 04:21:04+00:00
 layout: post
 slug: apprenticing-to-learn-software-development
 title: Apprenticing to Learn Software Development
-wordpress_id: 212
-categories:
-- Skills
 ---
 
 The foundation of my software development skills was set between 1995 and 1998 while I worked under the direction of my friend and mentor Andre Kruger. For a long time I called it "job shadowing", but I have come to realize that it was an informal [apprenticeship](http://en.wikipedia.org/wiki/Apprenticeship).

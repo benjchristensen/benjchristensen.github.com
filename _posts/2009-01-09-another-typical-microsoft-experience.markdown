@@ -5,9 +5,6 @@ date: 2009-01-09 08:35:02+00:00
 layout: post
 slug: another-typical-microsoft-experience
 title: Another typical Microsoft experience ...
-wordpress_id: 75
-categories:
-- Personal
 ---
 
 For the rare scenario I need to use Windows I have XP installed in Parallels 4 on my Mac.

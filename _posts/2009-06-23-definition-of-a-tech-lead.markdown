@@ -5,9 +5,6 @@ date: 2009-06-23 17:12:34+00:00
 layout: post
 slug: definition-of-a-tech-lead
 title: Definition of a Tech Lead
-wordpress_id: 103
-categories:
-- Management &amp; Leadership
 ---
 
 Good summary of a "tech lead" by James McGovern:

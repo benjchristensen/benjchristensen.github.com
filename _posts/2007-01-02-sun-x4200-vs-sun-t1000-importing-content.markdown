@@ -5,9 +5,6 @@ date: 2007-01-02 02:03:00+00:00
 layout: post
 slug: sun-x4200-vs-sun-t1000-importing-content
 title: Sun x4200 vs Sun T1000 => Importing Content
-wordpress_id: 28
-categories:
-- Performance
 ---
 
 Here are some numbers showing performance of our inQuire Importer against a MySQL 5.x database using our IT North American catalog with 500k+ products.

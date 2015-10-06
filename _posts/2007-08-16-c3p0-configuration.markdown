@@ -5,9 +5,6 @@ date: 2007-08-16 09:18:11+00:00
 layout: post
 slug: c3p0-configuration
 title: C3P0 Configuration
-wordpress_id: 49
-categories:
-- Code
 ---
 
 http://www.hibernate.org/214.html

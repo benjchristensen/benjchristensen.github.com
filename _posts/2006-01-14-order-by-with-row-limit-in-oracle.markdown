@@ -5,9 +5,6 @@ date: 2006-01-14 02:17:00+00:00
 layout: post
 slug: order-by-with-row-limit-in-oracle
 title: Order by with Row limit in Oracle
-wordpress_id: 7
-categories:
-- Code
 ---
 
 http://www.sleberknight.com:8080/roller/page/sleberkn/20050714

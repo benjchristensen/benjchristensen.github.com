@@ -5,10 +5,6 @@ date: 2006-10-30 18:21:00+00:00
 layout: post
 slug: javascript-and-css-optimization
 title: Javascript and CSS Optimization
-wordpress_id: 20
-categories:
-- Performance
-- User Interface
 ---
 
 Some good links on the subject ...

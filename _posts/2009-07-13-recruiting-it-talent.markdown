@@ -5,9 +5,6 @@ date: 2009-07-13 16:26:47+00:00
 layout: post
 slug: recruiting-it-talent
 title: Recruiting IT Talent
-wordpress_id: 200
-categories:
-- Management &amp; Leadership
 ---
 
 An interesting [article](http://duckdown.blogspot.com/2009/07/recruiting-elite-it-talent.html) by James McGovern on recruiting IT talent.

@@ -5,9 +5,6 @@ date: 2009-07-19 22:10:50+00:00
 layout: post
 slug: software-development-is-not-computer-science
 title: Software Development is Not "Computer Science"
-wordpress_id: 213
-categories:
-- Skills
 ---
 
 These [guys](http://arstechnica.com/science/news/2009/07/cesium-atoms-are-able-to-take-a-quantum-walk.ars) are "computer scientists".

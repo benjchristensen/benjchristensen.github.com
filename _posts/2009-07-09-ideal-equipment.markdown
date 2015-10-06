@@ -5,9 +5,6 @@ date: 2009-07-09 21:52:15+00:00
 layout: post
 slug: ideal-equipment
 title: Ideal Equipment
-wordpress_id: 187
-categories:
-- Tools
 ---
 
 The following is my opinion of ideal equipment for developing - and anything else I do.

@@ -5,7 +5,6 @@ date: 2011-12-13 19:40:23+00:00
 layout: post
 slug: animated-circle-using-d3-js
 title: Animated Circle Using d3.js
-wordpress_id: 429
 ---
 
 While working on visualizing data (application traffic) in realtime I used circles with size representing volume and color representing health.

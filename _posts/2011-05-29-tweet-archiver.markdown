@@ -5,9 +5,6 @@ date: 2011-05-29 06:53:09+00:00
 layout: post
 slug: tweet-archiver
 title: Tweet Archiver
-wordpress_id: 374
-categories:
-- Code
 ---
 
 I wanted to learn Ruby so wrote a script to do something I've wanted for a while - a simple mechanism to retrieve all of my Tweets using the Twitter API.

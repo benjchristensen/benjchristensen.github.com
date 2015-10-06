@@ -5,9 +5,6 @@ date: 2007-01-08 17:19:00+00:00
 layout: post
 slug: keyword-search-spelling-suggestions
 title: Keyword Search - Spelling Suggestions
-wordpress_id: 32
-categories:
-- Code
 ---
 
 Here are some valuable links related to how to provide spelling suggestions in keyword search.

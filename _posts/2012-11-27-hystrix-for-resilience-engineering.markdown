@@ -5,13 +5,6 @@ date: 2012-11-27 04:33:56+00:00
 layout: post
 slug: hystrix-for-resilience-engineering
 title: Hystrix for Resilience Engineering
-wordpress_id: 519
-categories:
-- Architecture
-- Code
-- Production
-- Production Problems
-- Resilience Engineering
 ---
 
 Today Hystrix was released on GitHub at [http://github.com/Netflix/Hystrix](http://github.com/Netflix/Hystrix).

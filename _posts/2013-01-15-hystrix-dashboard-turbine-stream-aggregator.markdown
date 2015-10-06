@@ -5,15 +5,6 @@ date: 2013-01-15 20:49:51+00:00
 layout: post
 slug: hystrix-dashboard-turbine-stream-aggregator
 title: Hystrix Dashboard + Turbine Stream Aggregator
-wordpress_id: 544
-categories:
-- Architecture
-- Code
-- Infrastructure
-- Performance
-- Production
-- Resilience Engineering
-- Tools
 ---
 
 Originally posted to the [Netflix Tech Blog](http://techblog.netflix.com/2012/12/hystrix-dashboard-and-turbine.html):

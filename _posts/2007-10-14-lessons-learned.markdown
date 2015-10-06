@@ -5,10 +5,6 @@ date: 2007-10-14 06:12:25+00:00
 layout: post
 slug: lessons-learned
 title: Lessons Learned
-wordpress_id: 51
-categories:
-- Management &amp; Leadership
-- Production
 ---
 
 [1] Don't be accommodating to a client ... otherwise, when all hell breaks loose none of that will matter and any issues resulting from attempts to accommodate last minute changes, bad decisions and architecture/environmental issues will all be the fault of the development team -- instead of the client.

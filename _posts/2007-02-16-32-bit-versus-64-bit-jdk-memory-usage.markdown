@@ -5,10 +5,6 @@ date: 2007-02-16 21:06:00+00:00
 layout: post
 slug: 32-bit-versus-64-bit-jdk-memory-usage
 title: 32-bit versus 64-bit JDK Memory Usage
-wordpress_id: 33
-categories:
-- Code
-- Performance
 ---
 
 Summary of analysis performed September 2006.

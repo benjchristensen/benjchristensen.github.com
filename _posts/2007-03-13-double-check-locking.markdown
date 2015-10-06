@@ -5,9 +5,6 @@ date: 2007-03-13 16:40:38+00:00
 layout: post
 slug: double-check-locking
 title: Double Check Locking
-wordpress_id: 34
-categories:
-- Code
 ---
 
 Recently re-visited the double-check-locking pattern (or anti-pattern).

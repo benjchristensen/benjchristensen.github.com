@@ -5,9 +5,6 @@ date: 2009-06-24 19:35:39+00:00
 layout: post
 slug: eclipse-galileo-3-5-and-subversion
 title: Eclipse Galileo (3.5) and Subversion
-wordpress_id: 110
-categories:
-- Tools
 ---
 
 Eclipse still does not ship with subversion support by default.

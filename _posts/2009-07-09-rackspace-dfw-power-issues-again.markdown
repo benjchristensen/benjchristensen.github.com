@@ -5,9 +5,6 @@ date: 2009-07-09 21:38:16+00:00
 layout: post
 slug: rackspace-dfw-power-issues-again
 title: Rackspace DFW Power Issues. Again.
-wordpress_id: 180
-categories:
-- Production Problems
 ---
 
 Twice in the last two weeks the Rackspace DFW (Dallas/Fort-Worth) data center has lost power to sections of its facility.

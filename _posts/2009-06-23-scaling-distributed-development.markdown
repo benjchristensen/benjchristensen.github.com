@@ -5,9 +5,6 @@ date: 2009-06-23 21:19:58+00:00
 layout: post
 slug: scaling-distributed-development
 title: Scaling Distributed Development
-wordpress_id: 101
-categories:
-- Management &amp; Leadership
 ---
 
 Business demand as of late and future projects on my horizon are causing me to ponder and deeply consider the staffing requirements to deliver high quality, cost effective solutions in reasonable timelines.

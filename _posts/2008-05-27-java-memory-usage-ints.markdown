@@ -5,10 +5,6 @@ date: 2008-05-27 07:41:01+00:00
 layout: post
 slug: java-memory-usage-ints
 title: Java Memory Usage - Ints
-wordpress_id: 58
-categories:
-- Code
-- Performance
 ---
 
 As I work on another set of indexes with large numbers of ints I've revisited how different storage mechanisms behave.

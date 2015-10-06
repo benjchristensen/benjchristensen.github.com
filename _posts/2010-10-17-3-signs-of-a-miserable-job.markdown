@@ -5,9 +5,6 @@ date: 2010-10-17 20:13:33+00:00
 layout: post
 slug: 3-signs-of-a-miserable-job
 title: 3 Signs of a Miserable Job
-wordpress_id: 344
-categories:
-- Management &amp; Leadership
 ---
 
 I read "3 Signs of a Miserable Job" and found it to have some good insights into jobs, career and particularly management. It's an easy read, most of the book in the form of a fable, readable in an evening or two. 

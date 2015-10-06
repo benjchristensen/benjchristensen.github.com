@@ -5,20 +5,6 @@ date: 2012-03-01 18:45:49+00:00
 layout: post
 slug: fault-tolerance-in-a-high-volume-distributed-system
 title: Fault Tolerance in a High Volume, Distributed System
-wordpress_id: 465
-categories:
-- Architecture
-- Code
-- Infrastructure
-- Performance
-- Production
-- Production Problems
-tags:
-- distributed system
-- fault tolerance
-- high volume
-- resiliency
-- service oriented architecture
 ---
 
 Originally posted on the [Netflix Tech Blog](http://techblog.netflix.com/2012/02/fault-tolerance-in-high-volume.html):

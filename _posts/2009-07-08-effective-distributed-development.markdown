@@ -5,9 +5,6 @@ date: 2009-07-08 21:05:28+00:00
 layout: post
 slug: effective-distributed-development
 title: Effective Distributed Development
-wordpress_id: 165
-categories:
-- Management &amp; Leadership
 ---
 
 In a previous post I spoke of "[scaling distributed development](http://benjchristensen.com/2009/06/23/scaling-distributed-development/)" in reference to the challenges in increasing the size of a team and the complexity of projects while working under limitations of the experience level of developers available in the remote location.

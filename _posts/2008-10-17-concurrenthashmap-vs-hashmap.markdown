@@ -5,10 +5,6 @@ date: 2008-10-17 20:07:11+00:00
 layout: post
 slug: concurrenthashmap-vs-hashmap
 title: ConcurrentHashMap vs HashMap
-wordpress_id: 72
-categories:
-- Code
-- Performance
 ---
 
 A simple test of performance for ConcurrentHashMap.

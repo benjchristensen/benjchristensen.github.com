@@ -5,10 +5,6 @@ date: 2005-11-19 21:14:00+00:00
 layout: post
 slug: content-management-systems-jsr-170-and-magnolia
 title: Content Management Systems -- JSR 170 and Magnolia
-wordpress_id: 5
-categories:
-- Architecture
-- Code
 ---
 
 In the past week I've done a bunch of research on content management systems, and in particular the Java standard JSR 170.

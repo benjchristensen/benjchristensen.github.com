@@ -5,12 +5,6 @@ date: 2013-05-24 19:34:11+00:00
 layout: post
 slug: hystrix-in-may-2013-thoughtworks-tech-radar
 title: Hystrix in May 2013 ThoughtWorks Tech Radar
-wordpress_id: 593
-categories:
-- Architecture
-- Code
-- Resilience Engineering
-- Tools
 ---
 
 [Hystrix](https://github.com/Netflix/Hystrix) was listed in the [May 2013 Tech Radar](http://thoughtworks.fileburst.com/assets/technology-radar-may-2013.pdf) by ThoughtWorks as "Assess" under the Tools section.

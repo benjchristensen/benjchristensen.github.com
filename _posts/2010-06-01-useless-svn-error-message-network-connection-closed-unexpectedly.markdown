@@ -5,9 +5,6 @@ date: 2010-06-01 16:34:25+00:00
 layout: post
 slug: useless-svn-error-message-network-connection-closed-unexpectedly
 title: 'Useless SVN Error Message: Network connection closed unexpectedly'
-wordpress_id: 300
-categories:
-- Tools
 ---
 
 If you're trying to do a subversion checkout using svn+ssh like this:

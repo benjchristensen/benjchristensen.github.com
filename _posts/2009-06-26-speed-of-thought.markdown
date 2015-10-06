@@ -5,12 +5,6 @@ date: 2009-06-26 20:29:49+00:00
 layout: post
 slug: speed-of-thought
 title: Speed of Thought
-wordpress_id: 118
-categories:
-- Architecture
-- Performance
-- Production
-- User Interface
 ---
 
 I've focused on performance for several years in my server-side and web application development - as much as I've been able to fit into the timelines. It has involved digging into minute details of Java and JVM tuning that rarely get explored by most java developers (from what I can tell anyways) and focusing on tuning the CSS, images, caching, GZIP and other settings of the front-end. It has generally paid off. Today my team operates servers processing millions of complex, dynamic, uncacheable web service transactions completing on average in around 250ms each (server side, not including network transport to client). I believe with further investment we could improve that even more.

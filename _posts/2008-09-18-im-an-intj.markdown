@@ -5,9 +5,6 @@ date: 2008-09-18 04:31:00+00:00
 layout: post
 slug: im-an-intj
 title: I'm an INTJ
-wordpress_id: 67
-categories:
-- Personal
 ---
 
 My sister-in-law had me take the personality test at http://humanmetrics.com/cgi-win/JTypes2.asp

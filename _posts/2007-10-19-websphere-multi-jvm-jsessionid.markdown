@@ -5,11 +5,6 @@ date: 2007-10-19 22:30:36+00:00
 layout: post
 slug: websphere-multi-jvm-jsessionid
 title: Websphere Multi-JVM jsessionid
-wordpress_id: 52
-categories:
-- Architecture
-- Code
-- Production
 ---
 
 Works just like it should :-)

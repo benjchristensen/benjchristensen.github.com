@@ -5,10 +5,6 @@ date: 2011-05-27 04:34:24+00:00
 layout: post
 slug: dynamic-directory-of-jar-files-in-classpath-via-eclipse-plugin
 title: Dynamic Directory of Jar Files in Classpath via Eclipse Plugin
-wordpress_id: 364
-categories:
-- Code
-- Tools
 ---
 
 I came across a scenario where I needed Eclipse to dynamically add a folder of jar files to the classpath and found out that Eclipse doesn't support this out of the box (no idea why ... IntelliJ does).

@@ -5,9 +5,6 @@ date: 2009-07-02 18:35:33+00:00
 layout: post
 slug: atlassian-has-outage
 title: Atlassian has Outage
-wordpress_id: 129
-categories:
-- Production Problems
 ---
 
 I couldn't access my hosted Confluence system this morning. An email just showed up confirming the issue.

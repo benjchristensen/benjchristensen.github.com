@@ -5,9 +5,6 @@ date: 2009-07-07 07:50:04+00:00
 layout: post
 slug: henry-kissinger-on-u-s-foreign-policy
 title: Henry Kissinger on U.S. Foreign Policy
-wordpress_id: 148
-categories:
-- Politics
 ---
 
 Good article interviewing Henry Kissinger: [http://abcnews.go.com/International/story?id=8010889](http://abcnews.go.com/International/story?id=8010889)

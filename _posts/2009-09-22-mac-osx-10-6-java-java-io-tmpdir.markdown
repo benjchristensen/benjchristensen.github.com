@@ -5,9 +5,6 @@ date: 2009-09-22 20:50:15+00:00
 layout: post
 slug: mac-osx-10-6-java-java-io-tmpdir
 title: Mac OSX 10.6 Java - java.io.tmpdir
-wordpress_id: 277
-categories:
-- Code
 ---
 
 Migrating from OSX 10.5 to Snow Leopard, 10.6 caused all of my java projects using embedded MySQL MXJ to fail.

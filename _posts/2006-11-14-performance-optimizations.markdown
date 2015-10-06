@@ -5,10 +5,6 @@ date: 2006-11-14 07:56:00+00:00
 layout: post
 slug: performance-optimizations
 title: WebApp Performance Optimizations
-wordpress_id: 23
-categories:
-- Performance
-- User Interface
 ---
 
 Playing around with real-world performance optimizations found JSMin to work quite well ... and very big gains by doing the following:

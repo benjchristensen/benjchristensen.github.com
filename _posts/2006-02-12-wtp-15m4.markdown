@@ -5,9 +5,6 @@ date: 2006-02-12 05:40:00+00:00
 layout: post
 slug: wtp-15m4
 title: WTP 1.5M4
-wordpress_id: 10
-categories:
-- Tools
 ---
 
 I'm running Eclipse 3.2M4 and WTP 1.5M4 and so far things seem to be working well.
