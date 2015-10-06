@@ -9,7 +9,7 @@ relative_permalinks: true
 # Setup
 title:            Ben Christensen
 tagline:          ''
-description:      'Software Engineer at Netflix, previously Apple'
+description:      'Software Engineer'
 url:              http://benjchristensen.com
 baseurl:          /
 
