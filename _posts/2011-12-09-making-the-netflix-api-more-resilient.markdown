@@ -29,4 +29,4 @@ A new [Netflix Tech Blog post](http://techblog.netflix.com/2011/12/making-netfli
 
 A video showing the realtime monitoring dashboard is on Vimeo:
 
-[vimeo http://vimeo.com/33359539]
+<iframe src="https://player.vimeo.com/video/33576628" width="500" height="275" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="https://vimeo.com/33576628">Netflix API Circuit Dashboard</a> from <a href="https://vimeo.com/benjchristensen">Ben Christensen</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
