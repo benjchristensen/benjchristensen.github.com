@@ -28,7 +28,7 @@ by Ben Christensen, Puneet Oberai and Ben Schmaus
 
 
 [
-![](images/hystrix-logo-tagline-github-link-640.png)](https://github.com/Netflix/Hystrix)
+![](/images/hystrix-logo-tagline-github-link-640.png)](https://github.com/Netflix/Hystrix)
 
   
 
@@ -41,14 +41,14 @@ The following snapshot shows six HystrixCommands being used by the Netflix API. 
   
 
 
-![](images/hystrix-dashboard-netflix-api-example-620.png)
+![](/images/hystrix-dashboard-netflix-api-example-620.png)
 
   
 
 When a circuit is failing then it changes colors (gradient from green through yellow, orange and red) such as this:
 
 
-![](images/dashboard-example-open-circuit-640.png)
+![](/images/dashboard-example-open-circuit-640.png)
 
 
 
@@ -66,7 +66,7 @@ We've purposefully tried to pack a lot of information into the dashboard so that
   
 
 
-![](images/dashboard-annoted-circuit-640.png)
+![](/images/dashboard-annoted-circuit-640.png)
 
   
 
@@ -98,7 +98,7 @@ The Hystrix dashboard can be used either to monitor an individual instance witho
   
 
 
-![](images/dashboard-direct-vs-turbine-640.png)
+![](/images/dashboard-direct-vs-turbine-640.png)
 
   
 

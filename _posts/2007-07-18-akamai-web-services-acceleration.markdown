@@ -11,4 +11,4 @@ Web Services served through Akamai's acceleration take 61% of the time without a
 
 Time in image is in milliseconds.
 
-[![spexlive-akamai-vs-direct.png](images/spexlive-akamai-vs-direct.png) ](images/spexlive-akamai-vs-direct.png)
+[![spexlive-akamai-vs-direct.png](/images/spexlive-akamai-vs-direct.png) ](/images/spexlive-akamai-vs-direct.png)

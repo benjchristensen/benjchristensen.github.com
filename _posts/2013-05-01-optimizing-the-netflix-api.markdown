@@ -55,14 +55,14 @@ One of the key drivers in pursuing the [redesign](http://techblog.netflix.com/20
 Due to the generic and granular nature of the original REST-based Netflix API, each call returns only a portion of functionality for a given user experience, requiring client applications to make multiple calls that need to be assembled in order to render a single user experience.  This interaction model is illustrated in the following diagram:
   
 
-![](images/90083-request-multi_1252.png)
+![](/images/90083-request-multi_1252.png)
 
   
 
 To reduce the chattiness inherent in the REST API, the discrete requests in the diagram above should be collapsed into a single request optimized for a given client.  The benefit is that the device then pays the price of WAN latency once and leverages the low latency and more powerful hardware server-side. As a side effect, this also eliminates redundancies that occur for every incoming request.
   
 
-![](images/7d4c6-request-single_1252.png)
+![](/images/7d4c6-request-single_1252.png)
 
   
 
@@ -155,7 +155,7 @@ The following diagram and subsequent annotations explain the architecture:
   
 
 
-![](images/72a7d-architecture-overview_1252.png)
+![](/images/72a7d-architecture-overview_1252.png)
   
 
 

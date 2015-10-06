@@ -17,7 +17,7 @@ The use case I intend to apply this prototype for is to visualize a stream of re
 
 Functionality not implemented in this prototype include things such as hover and click actions to show details of the data a bar represents.
 
-![](images/barchart.png)
+![](/images/barchart.png)
 
 Here are links to the code and working example:
 

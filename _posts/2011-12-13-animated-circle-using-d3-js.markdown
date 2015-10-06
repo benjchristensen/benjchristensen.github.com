@@ -11,7 +11,7 @@ While working on visualizing data (application traffic) in realtime I used circl
 
 Here are basic examples of circles with varying sizes and colors and animating them to dynamically change that I used as building blocks.
 
-![](images/circles-screenshot.png)
+![](/images/circles-screenshot.png)
 
 Here are links to the code and working example:
 

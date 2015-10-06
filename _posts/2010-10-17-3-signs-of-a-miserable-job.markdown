@@ -15,21 +15,21 @@ Below are some screen-captures of passages I liked ([sorry for the images as opp
 
 Summary of the "3 Signs"
 
-![3 signs of a miserable job](images/20101017-083638.jpg)
+![3 signs of a miserable job](/images/20101017-083638.jpg)
 
 The book makes it clear that it doesn't matter what the job is nor does higher compensation ultimately negate the need of these things. 
 
-![What a miserable job is](images/20101017-083652.jpg)
+![What a miserable job is](/images/20101017-083652.jpg)
 
-![Miserable employee](images/20101017-083645.jpg)
+![Miserable employee](/images/20101017-083645.jpg)
 
 In the end, the manager is the person who has the biggest impact on a persons happiness in their job and the case is made as to the importance of a manager in the life of those he manages yet how most managers don't realize this nor act on it - hence the misery of many in what would otherwise be fulfilling and satisfying jobs.
 
-![managers should be frank](images/20101017-083659.jpg)
+![managers should be frank](/images/20101017-083659.jpg)
 
 For me "immeasurement" is the one that hits closest to home as being something that affects me in my day to day life and that I've done poorly when I've managed others. 
 
-![immeasurement](images/20101017-083704.jpg)
+![immeasurement](/images/20101017-083704.jpg)
 
 Software development (where I personally have experience and can apply these lessons) in general is difficult in this regard - projects and code are never really done. Sure, something is deployed or ships, but then it's on to fixing things, adding the next feature or whatever, and rarely does an individual person have full impact on a product or system such that they can measure their success with it, especially on large teams or products. 
 

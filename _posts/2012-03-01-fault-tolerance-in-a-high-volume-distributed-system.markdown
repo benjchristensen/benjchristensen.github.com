@@ -20,7 +20,7 @@ In an [earlier post](http://techblog.netflix.com/2011/12/making-netflix-api-more
 Fault Tolerance is a Requirement, Not a Feature
 
 The Netflix API receives more than 1 billion incoming calls per day which in turn fans out to several billion outgoing calls (averaging a ratio of 1:6) to dozens of underlying subsystems with peaks of over 100k dependency requests per second.
-<a href="images/dependencies1.png" border="0"><img src="images/dependencies1.png" width="800"></a>
+<a href="/images/dependencies1.png" border="0"><img src="/images/dependencies1.png" width="800"></a>
 
 This all occurs in the cloud across thousands of EC2 instances.
 
@@ -30,7 +30,7 @@ Without taking steps to ensure fault tolerance, 30 dependencies each with 99.99%
 
 When a single API dependency fails at high volume with increased latency (causing blocked request threads) it can rapidly (seconds or sub-second) saturate all available Tomcat (or other container such as Jetty) request threads and take down the entire API.
 
-<a href="images/dependencies3.png" border="0"><img src="images/dependencies3.png" width="800"></a>
+<a href="/images/dependencies3.png" border="0"><img src="/images/dependencies3.png" width="800"></a>
 
 
 Thus, it is a requirement of high volume, high availability applications to build fault tolerance into their architecture and not expect infrastructure to solve it for them.
@@ -62,21 +62,21 @@ In light of the above architectural considerations we chose to implement a solut
 
 Each of these approaches to fault-tolerance has pros and cons but when combined together provide a comprehensive protective barrier between user requests and underlying dependencies.
 
-<a href="images/faulttolerancetypes.png" border="0"><img src="images/faulttolerancetypes.png" width="800"></a>
+<a href="/images/faulttolerancetypes.png" border="0"><img src="/images/faulttolerancetypes.png" width="800"></a>
 
 The Netflix DependencyCommand implementation wraps a network-bound dependency call with a preference towards executing in a separate thread and defines fallback logic which gets executed (step 8 in flow chart below) for any failure or rejection (steps 3, 4, 5a, 6b below) regardless of which type of fault tolerance (network or thread timeout, thread pool or semaphore rejection, circuit breaker) triggered it.
 
-<a href="images/dependencycommands.png" border="0"><img src="images/dependencycommands.png" width="800"></a>
+<a href="/images/dependencycommands.png" border="0"><img src="/images/dependencycommands.png" width="800"></a>
 
 We decided that the benefits of isolating dependency calls into separate threads outweighs the drawbacks (in most cases). Also, since the API is progressively [moving towards increased concurrency](http://techblog.netflix.com/2011/02/redesigning-netflix-api.html) it was a win-win to achieve both fault tolerance and performance gains through concurrency with the same solution. In other words, the overhead of separate threads is being turned into a positive in many use cases by leveraging the concurrency to execute calls in parallel and speed up delivery of the Netflix experience to users.
 
 Thus, most dependency calls now route through a separate thread-pool as the following diagram illustrates:
 
-<a href="images/dependencies4.png" border="0"><img src="images/dependencies4.png" width="800"></a>
+<a href="/images/dependencies4.png" border="0"><img src="/images/dependencies4.png" width="800"></a>
 
 If a dependency becomes latent (the worst-case type of failure for a subsystem) it can saturate all of the threads in its own thread pool, but Tomcat request threads will timeout or be rejected immediately rather than blocking.
 
-<a href="images/dependencies6.png" border="0"><img src="images/dependencies6.png" width="800"></a>
+<a href="/images/dependencies6.png" border="0"><img src="/images/dependencies6.png" width="800"></a>
 
 In addition to the isolation benefits and concurrent execution of dependency calls we have also leveraged the separate threads to enable request collapsing (automatic batching) to increase overall efficiency and reduce user request latencies.
 
@@ -123,7 +123,7 @@ Example Use Case
 
 Following is an example of how threads, network timeouts and retries combine:
 
-<a href="images/faulttoleranceexampleconfig.png" border="0"><img src="images/faulttoleranceexampleconfig.png" width="800"></a>
+<a href="/images/faulttoleranceexampleconfig.png" border="0"><img src="/images/faulttoleranceexampleconfig.png" width="800"></a>
 
 The above diagram shows an example configuration where the dependency has no reason to hit the 99.5th percentile and thus cuts it short at the network timeout layer and immediately retries with the expectation to get median latency most of the time, and accomplish this all within the 300ms thread timeout.
 

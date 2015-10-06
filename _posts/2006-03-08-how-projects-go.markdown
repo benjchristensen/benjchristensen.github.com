@@ -7,4 +7,4 @@ slug: how-projects-go
 title: How projects go ...
 ---
 
-<img src="images/software-project.jpg">
+<img src="/images/software-project.jpg">

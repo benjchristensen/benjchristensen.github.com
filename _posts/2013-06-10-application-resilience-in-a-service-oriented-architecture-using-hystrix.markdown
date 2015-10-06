@@ -28,7 +28,7 @@ At Netflix, we have spent a lot of time and energy engineering resilience into o
 
 
 
-![](images/blocked-requests-640.png)
+![](/images/blocked-requests-640.png)
 
 
 
@@ -64,7 +64,7 @@ Restricting concurrent access to a given backend service has proven to be an eff
 
 
 
-![](images/failing-dependency-640.png)
+![](/images/failing-dependency-640.png)
 
 
 
@@ -82,7 +82,7 @@ Mixed environments will also have several types of clients for the many differen
 
 
 
-![](images/failing-dependency-box-640.png)
+![](/images/failing-dependency-box-640.png)
 
 
 
@@ -108,7 +108,7 @@ Applying bulkheads at the functional level also enables addition of business log
 
 
 
-![](images/dashboard-annoted-circuit-640.png)
+![](/images/dashboard-annoted-circuit-640.png)
 
 
 
@@ -152,5 +152,5 @@ Engineering resilience into an application is critical to achieving fault and la
 
 
 
-![](images/hystrix-logo-tagline-640.png)
+![](/images/hystrix-logo-tagline-640.png)
 

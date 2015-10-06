@@ -33,8 +33,8 @@ External Links:
 
 Good [summary PDF](http://www.watchingwebsites.com/~/www.watchingwebsites.com/web/content/wp-content/uploads//2009/09/watchingwebsites-perf-and-analytics.pdf) showing metrics of performance impact.
 
-[![conversion-rate-and-order-value](images/conversion-rate-and-order-value.png)](images/conversion-rate-and-order-value.png)
+[![conversion-rate-and-order-value](/images/conversion-rate-and-order-value.png)](/images/conversion-rate-and-order-value.png)
 
-[![bing-delayimpact](images/bing-delayimpact.png)](images/bing-delayimpact.png)
+[![bing-delayimpact](/images/bing-delayimpact.png)](/images/bing-delayimpact.png)
 
 

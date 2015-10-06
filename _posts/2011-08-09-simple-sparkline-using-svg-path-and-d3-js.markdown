@@ -11,14 +11,14 @@ I've been playing with SVG visualization and the [d3.js](http://mbostock.github.
 
 As a starting point this is a simple line chart used as a sparkline. The HTML and Javascript provide a boiler plate from which more complex visualizations and charts can be built.
 
-![](images/sparkline-d3.png)
+![](/images/sparkline-d3.png)
 
 Here are links to the code and working example:
 
 [http://bl.ocks.org/1133472](http://bl.ocks.org/1133472)
 [ https://gist.github.com/1133472](https://gist.github.com/1133472)
 
-To make the size more applicable to inline ![](images/sparkline-small-d3.png) use as a sparkline decrease the ranges:
+To make the size more applicable to inline ![](/images/sparkline-small-d3.png) use as a sparkline decrease the ranges:
 `
 var x = d3.scale.linear().domain([0, 10]).range([0, 20]);
 var y = d3.scale.linear().domain([0, 10]).range([0, 10]);
