@@ -21,7 +21,7 @@ Good introductory quote to the external links and images shown below:
 Regarding "smaller scale" sites more typical than Google and Bing:
 
 
-<blockquote>The results of their analysis show how significant a reduction in page latency can be. In addition to reducing bounce rates, and increasing pages per visit & time on site, t**hey found a 16.07% increase in conversion rates and a 5.50% increase in average order value.** - [http://radar.oreilly.com/2009/10/watching-websites.html](http://radar.oreilly.com/2009/10/watching-websites.html)</blockquote>
+<blockquote>The results of their analysis show how significant a reduction in page latency can be. In addition to reducing bounce rates, and increasing pages per visit & time on site, <b>they found a 16.07% increase in conversion rates and a 5.50% increase in average order value.</b> - <a href="http://radar.oreilly.com/2009/10/watching-websites.html">http://radar.oreilly.com/2009/10/watching-websites.html</a></blockquote>
 
 
 
