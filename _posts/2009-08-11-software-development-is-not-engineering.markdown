@@ -59,10 +59,3 @@ Is it any wonder that the "transformative" software projects most often come fro
 
 As Tom DeMarco suggests, I hope to be focusing on development where the value is worth allowing the proper time, people, experimentation and development to occur - so that something of true value can be created. If management of "costs" is the most important aspect of the project, the greatest value to be created, I don't even want to bother. I'd rather work on a project that has the ability to be transformative, and create greater value than the cost of the effort.
 
-
-software engineering:
-
-
-
-
-An Idea Whose Time Has Come and
