@@ -7,9 +7,7 @@ slug: definition-of-a-tech-lead
 title: Definition of a Tech Lead
 ---
 
-Good summary of a "tech lead" by James McGovern:
-
-http://duckdown.blogspot.com/2009/06/enterprise-architecture-so-exactly-what.html
+Good summary of a "tech lead" <a href="http://duckdown.blogspot.com/2009/06/enterprise-architecture-so-exactly-what.html">by James McGovern</a>:
 
 If you are in this role and want to live up to your title, then you need the following skills:
 
