@@ -11,314 +11,115 @@ I recently came across the problem of large resultsets being pulled into a java 
 
 The test case below shows how the entire ResultSet is buffered in memory by default -- which can be a "very bad thing" when dealing with hundreds or thousands of megabytes of data when it's intended to be processed row by row.
 
-**Using mysql-connector-java-3.1.12-bin.jar and a JDK 5 with 32MB heap:**
-
-
-ET-COMMONS INFO: JVM MEMORY MONITOR => Total: 33  Used: 1  Free: 32
-
-
-
-
-Retrieving data ...
-
-
-
-
-Ran out of memory at row: 0
-
-
-
-
-java.lang.OutOfMemoryError: Java heap space
-
-
-
-
-at com.mysql.jdbc.ByteArrayBuffer.getBytes(ByteArrayBuffer.java:128)
-
-
-
-
-at com.mysql.jdbc.ByteArrayBuffer.readLenByteArray(ByteArrayBuffer.java:248)
-
-
-
-
-at com.mysql.jdbc.MysqlIO.nextRow(MysqlIO.java:1304)
-
-
-
-
-at com.mysql.jdbc.MysqlIO.readSingleRowSet(MysqlIO.java:2272)
-
-
-
-
-at com.mysql.jdbc.MysqlIO.getResultSet(MysqlIO.java:423)
-
-
-
-
-at com.mysql.jdbc.MysqlIO.readResultsForQueryOrUpdate(MysqlIO.java:1962)
-
-
-
-
-at com.mysql.jdbc.MysqlIO.readAllResults(MysqlIO.java:1385)
-
-
-
-
-at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1728)
-
-
-
-
-at com.mysql.jdbc.Connection.execSQL(Connection.java:2988)
-
-
-
-
-at com.mysql.jdbc.Connection.execSQL(Connection.java:2917)
-
-
-
-
-at com.mysql.jdbc.Statement.executeQuery(Statement.java:824)
-
-
-
-
-at JDBCTest.main(JDBCTest.java:26)
-
-
- 
-
-**Using mysql-connector-java-5.1.6-bin.jar and the same JDK 5 with 32MB heap:**
-
-
-ET-COMMONS INFO: JVM MEMORY MONITOR => Total: 33  Used: 1  Free: 32
-
-
-
-
-Retrieving data ...
-
-
-
-
-Ran out of memory at row: 0
-
-
-
-
-java.lang.OutOfMemoryError: Java heap space
-
-
-
-
-at com.mysql.jdbc.ByteArrayBuffer.getBytes(ByteArrayBuffer.java:128)
-
-
-
-
-at com.mysql.jdbc.ByteArrayBuffer.readLenByteArray(ByteArrayBuffer.java:248)
-
-
-
-
-at com.mysql.jdbc.MysqlIO.nextRow(MysqlIO.java:1304)
-
-
-
-
-at com.mysql.jdbc.MysqlIO.readSingleRowSet(MysqlIO.java:2272)
-
-
-
-
-at com.mysql.jdbc.MysqlIO.getResultSet(MysqlIO.java:423)
-
-
-
-
-at com.mysql.jdbc.MysqlIO.readResultsForQueryOrUpdate(MysqlIO.java:1962)
-
-
-
-
-at com.mysql.jdbc.MysqlIO.readAllResults(MysqlIO.java:1385)
-
-
-
-
-at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1728)
-
-
-
-
-at com.mysql.jdbc.Connection.execSQL(Connection.java:2988)
-
-
-
-
-at com.mysql.jdbc.Connection.execSQL(Connection.java:2917)
-
-
-
-
-at com.mysql.jdbc.Statement.executeQuery(Statement.java:824)
-
-
-
-
-at JDBCTest.main(JDBCTest.java:26)
-
-
- 
+<b>Using mysql-connector-java-3.1.12-bin.jar and a JDK 5 with 32MB heap:</b>
+
+
+	ET-COMMONS INFO: JVM MEMORY MONITOR => Total: 33  Used: 1  Free: 32
+	
+	Retrieving data ...
+	
+	Ran out of memory at row: 0
+	java.lang.OutOfMemoryError: Java heap space
+	at com.mysql.jdbc.ByteArrayBuffer.getBytes(ByteArrayBuffer.java:128)
+	at com.mysql.jdbc.ByteArrayBuffer.readLenByteArray(ByteArrayBuffer.java:248)
+	at com.mysql.jdbc.MysqlIO.nextRow(MysqlIO.java:1304)
+	at com.mysql.jdbc.MysqlIO.readSingleRowSet(MysqlIO.java:2272)
+	at com.mysql.jdbc.MysqlIO.getResultSet(MysqlIO.java:423)
+	at com.mysql.jdbc.MysqlIO.readResultsForQueryOrUpdate(MysqlIO.java:1962)
+	at com.mysql.jdbc.MysqlIO.readAllResults(MysqlIO.java:1385)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1728)
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:2988)
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:2917)
+	at com.mysql.jdbc.Statement.executeQuery(Statement.java:824)
+	at JDBCTest.main(JDBCTest.java:26)
+
+<b>Using mysql-connector-java-5.1.6-bin.jar and the same JDK 5 with 32MB heap:</b>
+
+	ET-COMMONS INFO: JVM MEMORY MONITOR => Total: 33  Used: 1  Free: 32
+	
+	Retrieving data ...
+	
+	Ran out of memory at row: 0
+	java.lang.OutOfMemoryError: Java heap space
+	at com.mysql.jdbc.ByteArrayBuffer.getBytes(ByteArrayBuffer.java:128)
+	at com.mysql.jdbc.ByteArrayBuffer.readLenByteArray(ByteArrayBuffer.java:248)
+	at com.mysql.jdbc.MysqlIO.nextRow(MysqlIO.java:1304)
+	at com.mysql.jdbc.MysqlIO.readSingleRowSet(MysqlIO.java:2272)
+	at com.mysql.jdbc.MysqlIO.getResultSet(MysqlIO.java:423)
+	at com.mysql.jdbc.MysqlIO.readResultsForQueryOrUpdate(MysqlIO.java:1962)
+	at com.mysql.jdbc.MysqlIO.readAllResults(MysqlIO.java:1385)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1728)
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:2988)
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:2917)
+	at com.mysql.jdbc.Statement.executeQuery(Statement.java:824)
+	at JDBCTest.main(JDBCTest.java:26)
 
 Thus we see that both the old and new versions of the MySQL JDBC driver by default attempt to load the entire resultset into memory.
-
- 
 
 I now increase the heap to 1GB to allow it to grow and find that the test query uses up > 500MB of heap before it even starts the rs.next() loop.
 
 
-ET-COMMONS INFO: JVM MEMORY MONITOR => Total: 33  Used: 1  Free: 32
-
-
-
-
-Retrieving data ...
-
-
-
-
-ET-COMMONS INFO: JVM MEMORY MONITOR => Total: 298  Used: 183  Free: 115
-
-
-
-
-ET-COMMONS INFO: JVM MEMORY MONITOR => Total: 527  Used: 381  Free: 146
-
-
-
-
-Starting to retrieve data. Memory Used: 517
-
-
-
-
-Done retrieving data => 2318284   Memory Used: 551
-
-
- 
+	ET-COMMONS INFO: JVM MEMORY MONITOR => Total: 33  Used: 1  Free: 32
+	
+	Retrieving data ...
+	
+	ET-COMMONS INFO: JVM MEMORY MONITOR => Total: 298  Used: 183  Free: 115
+	ET-COMMONS INFO: JVM MEMORY MONITOR => Total: 527  Used: 381  Free: 146
+	
+	Starting to retrieve data. Memory Used: 517
+	
+	Done retrieving data => 2318284   Memory Used: 551
 
 Here is the code for this:
-
  
 
-            ResultSet rs = conn.createStatement().executeQuery("<sql query that returns lots of data>");
+	ResultSet rs = conn.createStatement().executeQuery("<sql query that returns lots of data>");
+	System.out.println("Starting to retrieve data. Memory Used: " + getUsedMemory());
+	while (rs.next()) {
+	    rs.getString(1);
+	    rowsReturned++;
+	}
+	System.out.println("Done retrieving data => " + rowsReturned + "   Memory Used: "  + getUsedMemory());
 
-            System.out.println("Starting to retrieve data. Memory Used: " + getUsedMemory());
-
-            while (rs.next()) {
-
-                rs.getString(1);
-
-                rowsReturned++;
-
-            }
-
-            System.out.println("Done retrieving data => " + rowsReturned + "   Memory Used: "  
-
-+ getUsedMemory());
-
- 
 
 Thus you can see that the "executeQuery()" method loads up 500MB of data before it passes on the "rs.next()" loop. The full ResultSet is being buffered in memory.
 
  
-
-**Solution**
+<b>Solution</b>
 
 To make the JDBC driver stream the results instead of buffer them all first we do the following:
 
-            stmt.setFetchSize(Integer.MIN_VALUE);
+	stmt.setFetchSize(Integer.MIN_VALUE);
 
 
 Then we get this result instead:
 
-
-
-
-
-
-
-ET-COMMONS INFO: JVM MEMORY MONITOR => Total: 33  Used: 1  Free: 32
-
-
-
-
-Retrieving data ...
-
-
-
-
-Starting to retrieve data. Memory Used: 2
-
-
-
-
-ET-COMMONS INFO: JVM MEMORY MONITOR => Total: 33  Used: 1  Free: 32
-
-
-
-
-ET-COMMONS INFO: JVM MEMORY MONITOR => Total: 33  Used: 2  Free: 31
-
-
-
-
-Done retrieving data => 2318284   Memory Used: 2
-
-
-
-
-
-
- 
+	ET-COMMONS INFO: JVM MEMORY MONITOR => Total: 33  Used: 1  Free: 32
+	
+	Retrieving data ...
+	
+	Starting to retrieve data. Memory Used: 2
+	
+	ET-COMMONS INFO: JVM MEMORY MONITOR => Total: 33  Used: 1  Free: 32
+	ET-COMMONS INFO: JVM MEMORY MONITOR => Total: 33  Used: 2  Free: 31
+	
+	Done retrieving data => 2318284   Memory Used: 2
 
 Now it behaves like we expect it to ... only 2MB used instead of > 500MB.
 
- 
 
 There are some caveats:
 
 
-
-	
-  * http://javaquirks.blogspot.com/2007/12/mysql-streaming-result-set.html
-
-	
-  * http://dev.mysql.com/doc/refman/5.0/en/connector-j-reference-implementation-notes.html
-
-
+  * <a href="http://javaquirks.blogspot.com/2007/12/mysql-streaming-result-set.html">http://javaquirks.blogspot.com/2007/12/mysql-streaming-result-set.html</a>
+  * <a href="http://dev.mysql.com/doc/refman/5.0/en/connector-j-reference-implementation-notes.html">http://dev.mysql.com/doc/refman/5.0/en/connector-j-reference-implementation-notes.html</a>
 
 
 In the second link of official documentation we read (emphasis in red added by myself):
 
-
-
-
 ----------------------------------------------------------------------
 
-
-
-
-
-
-**ResultSet**
+<b>ResultSet</b>
 
 By default, ResultSets are completely retrieved and stored in memory. In most cases this is the most efficient way to operate, and due to the design of the MySQL network protocol is easier to implement. If you are working with ResultSets that have a large number of rows or large values, and can not allocate heap space in your JVM for the memory required, you can tell the driver to stream the results back one row at a time.
 
@@ -340,9 +141,3 @@ If the statement is within scope of a transaction, then locks are released when 
 
 Therefore, if using streaming results, you should process them as quickly as possible if you want to maintain concurrent access to the tables referenced by the statement producing the result set.
 
-
-
-
- 
-
- 
